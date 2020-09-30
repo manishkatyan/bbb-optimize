@@ -11,8 +11,8 @@ sed -i 's/attendeesJoinViaHTML5Client=.*/attendeesJoinViaHTML5Client=true/g' /us
 sed -i 's/moderatorsJoinViaHTML5Client=.*/moderatorsJoinViaHTML5Client=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
 echo "Set Welcome message"
-sed -i 's/defaultWelcomeMessage=.*/defaultWelcomeMessage=Welcome to <b>\%\%CONFNAME\%\%</b>!/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
-sed -i 's/defaultWelcomeMessageFooter=.*/defaultWelcomeMessageFooter=<div style="font-size:90%;font-weight:400;color:#666;">Use a headset to avoid causing background noise.<br>Refresh the browser in case of any network issue.</div>/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+sed -i 's/defaultWelcomeMessage=.*/defaultWelcomeMessage=Welcome to <b>\%\%CONFNAME\%\%<\/b>\!/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+sed -i 's/defaultWelcomeMessageFooter=.*/defaultWelcomeMessageFooter=Use a headset to avoid causing background noise.<br>Refresh the browser in case of any network issue./g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 #sed -i 's/defaultWelcomeMessageFooter=.*/defaultWelcomeMessageFooter=To join this meeting by phone, dial:<br>  %%DIALNUM%%<br>Then enter %%CONFNUM%% as the conference PIN number./g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
 #echo "Set dial in number"
