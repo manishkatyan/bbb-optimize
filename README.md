@@ -87,7 +87,7 @@ pagination:
 
 Follow the steps below to resolve 1007/1020 errors that your users may resport in case they are behind a firewall.
 
-###1 Update `external.xml` and `vars.xml`
+##1 Update `external.xml` and `vars.xml`
 Edit `/opt/freeswitch/conf/sip_profiles/external.xml` and change
 ```xml
 <param name="ext-rtp-ip" value="$${local_ip_v4}"/>
@@ -110,7 +110,7 @@ To 
 <X-PRE-PROCESS cmd="set" data="external_sip_ip=EXTERNAL_IP_ADDRESS"/>
 ```
 
-####2 Verify Turn server is accessible 
+###2 Verify Turn server is accessible 
 Verify Turn server is accessible from your BBB serve. If you receive code 0x0001c means STUN is not working. Log into your BBB server and execute the following command: 
 
 ```sh
@@ -136,7 +136,7 @@ Nat filtering: Endpoint Independent Filtering
 
 Configure BigBlueButton to use the coturn server by following the instruction [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html#configure-bigbluebutton-to-use-the-coturn-server)
 
-####3 Change in `/etc/turnserver.conf` on the Turn server:
+###3 Change in `/etc/turnserver.conf` on the Turn server:
 ```sh
 realm=bbbturn15.derspaneli.com
 listening-port=3478 #gets error when you setup port 80
@@ -146,7 +146,7 @@ listening-ip=Public-IP-of-Turn server
 external-ip=Public-IP-of-Turn-server
 ```
 
-####4 Set external IP in WebRtcEndpoint.conf.ini 
+###4 Set external IP in WebRtcEndpoint.conf.ini 
 Edit `/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini`
 
 Mention external or public IP address of the media server by uncommenting the line below. Doing so has the advantage of not needing to configure STUN/TURN for the media server.
@@ -160,11 +160,11 @@ STUN/TURN are needed only when the media server sits behind a NAT and needs to f
 #stunServerPort=3478
 ```
 
-####5 Verify your media negotiation timeouts. 
+###5 Verify your media negotiation timeouts. 
 Recommend setting is to set `baseTimeout` to `30000` in `/usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml`
 
 
-####6 Verify Turn is working
+###6 Verify Turn is working
 Visit `https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/` to check whether your Turn sevrer is working and enter the details below. Change Turn server URL to your Turn server URL.  
 ```sh
 STUN or TURN URI: turn:turn.higheredlab.com:443?transport=tcp
