@@ -150,6 +150,7 @@ Edit `/opt/freeswitch/etc/freeswitch/autoload_configs/opus.conf.xml` and copy-an
 </configuration>
 ```
 
+[Reference](https://groups.google.com/g/bigbluebutton-setup/c/3Y7VBllwpX0/m/41X9j8bvCAAJ)
 
 ## Fix 1007 and 1020 errors
 
