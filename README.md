@@ -183,3 +183,21 @@ echo username:$username && \
 echo password : $(echo -n $username | openssl dgst -binary -sha1 -hmac $secret | openssl base64)
 ```
 Then click `Add Server` and then `Gather candidates` button. If you have done everything correctly, you should see `Done` as the final result. If you do not get any response or if you see any error messages, please double check if you have diligently followed above steps.
+
+## More on BigBlueButton
+
+Check-out the following projects to further extend features of BBB.
+
+### [bbb-twilio](https://github.com/manishkatyan/bbb-twilio)
+
+Integrate Twilio into BigBlueButton so that users can join a meeting with a dial-in number. You can get local numbers for almost all the countries.
+
+### [bbb-mp4](https://github.com/manishkatyan/bbb-mp4)
+
+With this app, you can convert a BigBlueButton recording into MP4 video and upload to S3. You can covert multiple MP4 videos in parallel or automate the conversion process.
+
+### [100 Most Googled Questions on BigBlueButton](https://higheredlab.com/bigbluebutton-guide/)
+
+Everything you need to know about BigBlueButton including pricing, comparison with Zoom, Moodle integrations, scaling, and dozens of troubleshooting.
+
+
