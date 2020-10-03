@@ -1,5 +1,5 @@
 # bbb-optimize
-Here are some tips to customize and optimize BigBlueButton server. 
+Here are techniques to optimize and smoothly run your BigBlueButton server, including increasing recording processing speed, dynamic video profile, pagination, fixing 1007/1020 errors and using apply-config.sh. 
 
 ## Manage customizations
 
