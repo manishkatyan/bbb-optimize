@@ -1,6 +1,11 @@
 # bbb-optimize
 Here are techniques to optimize and smoothly run your BigBlueButton server, including increasing recording processing speed, dynamic video profile, pagination, improving audio quality, fixing 1007/1020 errors and using apply-config.sh. 
 
+Don't forget to restart your BigBlueButton server after making these changes
+```sh
+bbb-conf --restart
+``` 
+
 ## Manage customizations
 
 Keep all customizations of BigBlueButton server in apply-config.sh so that (1) all your BBB servers have same customizations without any errors, and (2) you don't lose them while upgrading.
