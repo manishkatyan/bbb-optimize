@@ -87,7 +87,7 @@ pagination:
 
 Follow the steps below to resolve 1007/1020 errors that your users may resport in case they are behind a firewall.
 
-##1 Update `external.xml` and `vars.xml`
+### Update `external.xml` and `vars.xml`
 Edit `/opt/freeswitch/conf/sip_profiles/external.xml` and change
 ```xml
 <param name="ext-rtp-ip" value="$${local_ip_v4}"/>
@@ -110,7 +110,7 @@ To 
 <X-PRE-PROCESS cmd="set" data="external_sip_ip=EXTERNAL_IP_ADDRESS"/>
 ```
 
-###2 Verify Turn server is accessible 
+#### Verify Turn server is accessible 
 Verify Turn server is accessible from your BBB serve. If you receive code 0x0001c means STUN is not working. Log into your BBB server and execute the following command: 
 
 ```sh
