@@ -83,6 +83,74 @@ pagination:
   enabled: true
 ```
 
+## Stream better quality audio
+Edit `/usr/local/bigbluebutton/bbb-webrtc-sfu/config/default.yml` and make the following changes
+```sh
+maxaveragebitrate: "256000"
+maxplaybackrate: "48000"
+```
+
+Edit `/opt/freeswitch/etc/freeswitch/autoload_configs/conference.conf.xml` and make the follwoing changes
+```sh
+<param name="interval" value="20"/>
+<param name="channels" value="2"/>
+<param name="energy-level" value="100"/>
+```
+
+Edit `/opt/freeswitch/etc/freeswitch/dialplan/default/bbb_conference.xml` and copy-and-paste the code below, removing the existig code
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<include>
+   <extension name="bbb_conferences_ws">
+      <condition field="${bbb_authorized}" expression="true" break="on-false" />
+      <condition field="${sip_via_protocol}" expression="^wss?$" />
+      <condition field="destination_number" expression="^(\d{5,11})$">
+         <action application="set" data="jitterbuffer_msec=60:120:20" />
+         <action application="set" data="rtp_jitter_buffer_plc=true" />
+         <action application="set" data="rtp_jitter_buffer_during_bridge=true" />
+         <action application="set" data="suppress_cng=true" />
+         <action application="answer" />
+         <action application="conference" data="$1@cdquality" />
+      </condition>
+   </extension>
+   <extension name="bbb_conferences">
+      <condition field="${bbb_authorized}" expression="true" break="on-false" />
+      <condition field="destination_number" expression="^(\d{5,11})$">
+         <action application="set" data="jitterbuffer_msec=60:120:20" />
+         <action application="set" data="rtp_jitter_buffer_plc=true" />
+         <action application="set" data="rtp_jitter_buffer_during_bridge=true" />
+         <action application="set" data="suppress_cng=true" />
+         <action application="answer" />
+         <action application="conference" data="$1@cdquality" />
+      </condition>
+   </extension>
+</include>
+```
+
+Edit `/opt/freeswitch/etc/freeswitch/autoload_configs/opus.conf.xml` and copy-and-paste the code below, removing the existig code
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration name="opus.conf">
+   <settings>
+      <param name="use-vbr" value="1" />
+      <param name="use-dtx" value="0" />
+      <param name="complexity" value="10" />
+      <param name="packet-loss-percent" value="15" />
+      <param name="keep-fec-enabled" value="1" />
+      <param name="use-jb-lookahead" value="1" />
+      <param name="advertise-useinbandfec" value="1" />
+      <param name="adjust-bitrate" value="1" />
+      <param name="maxaveragebitrate" value="256000" />
+      <param name="maxplaybackrate" value="48000" />
+      <param name="sprop-maxcapturerate" value="48000" />
+      <param name="sprop-stereo" value="1" />
+      <param name="negotiate-bitrate" value="1" />
+   </settings>
+</configuration>
+```
+
+
 ## Fix 1007 and 1020 errors
 
 Follow the steps below to resolve 1007/1020 errors that your users may resport in case they are behind a firewall.
