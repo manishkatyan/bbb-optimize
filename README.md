@@ -1,7 +1,19 @@
 # bbb-customize
+Here are some tips to customize and optimize BigBlueButton server. 
+
+## Manage customizations
+
 Keep all customizations of BigBlueButton server in apply-config.sh so that (1) all your BBB servers have same customizations without any errors, and (2) you don't lose them while upgrading.
 
-### Change recording processing speed
+```sh
+git clone https://github.com/manishkatyan/bbb-optimize.git
+cd bbb-optimize
+cp apply-config-sample.sh apply-config.sh
+cp apply-config.sh /etc/bigbluebutton/bbb-conf/apply-config.sh
+```
+Edit `apply-config.sh` as appropriate.
+
+## Change recording processing speed
 ```sh
 vi /usr/local/bigbluebutton/core/lib/recordandplayback/generators/video.rb
 ```
@@ -14,7 +26,7 @@ Please keep in mind that it uses a more CPU which can affect the performance of 
 
 Hence, its better to change the schedule of processing internal for recordings along with this change. 
 
-### Change processing interval for recordings
+## Change processing interval for recordings
 
 Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by creating an override for the default bbb-record-core.timer.
 
