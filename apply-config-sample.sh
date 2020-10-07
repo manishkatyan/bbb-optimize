@@ -56,3 +56,8 @@ sed -i 's/copyright:.*/copyright: "©2020 HigherEdLab.com"/g' /usr/share/meteor/
 
 echo "Set Helplink"
 sed -i 's/helpLink:.*/helpLink: http:\/\/higheredlab.com\/bigbluebutton-guide#using-bigbluebutton/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+
+echo "Fix for 1007 and 1020 - In external.xml set ext-rtp-ip to $${external_rtp_ip} and ext-sip-ip to $${external_sip_ip}"
+xmlstarlet ed -u '//profile/settings/param[@name="ext-rtp-ip"]/@value' -v "\$\${external_rtp_ip}" /opt/freeswitch/conf/sip_profiles/external.xml
+xmlstarlet ed -u '//profile/settings/param[@name="ext-sip-ip"]/@value' -v "\$\${external_sip_ip}" /opt/freeswitch/conf/sip_profiles/external.xml
+
