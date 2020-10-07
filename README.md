@@ -10,7 +10,11 @@ bbb-conf --restart
 
 Keep all customizations of BigBlueButton server in apply-config.sh so that (1) all your BBB servers have same customizations without any errors, and (2) you don't lose them while upgrading.
 
+We use XMLStarlet to update xml files and sed to update text files. 
+
 ```sh
+sudo apt-get update -y
+sudo apt-get install -y xmlstarlet
 git clone https://github.com/manishkatyan/bbb-optimize.git
 cd bbb-optimize
 cp apply-config-sample.sh apply-config.sh
