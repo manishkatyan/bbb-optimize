@@ -20,7 +20,26 @@ cd bbb-optimize
 cp apply-config-sample.sh apply-config.sh
 cp apply-config.sh /etc/bigbluebutton/bbb-conf/apply-config.sh
 ```
-Edit `apply-config.sh` as appropriate.
+Edit `apply-config.sh` as appropriate. Comments with each of the customizations will help you understand that the implication of each of them and you will be able to change the default values.  
+
+## Match with your branding
+```sh
+cp default.pdf /var/www/bigbluebutton-default/
+cp favicon.ico /var/www/bigbluebutton-default/
+bbb-conf --restart
+```
+You can update default BigBlueButton setup to match with your branding in the following ways:
+1. Default PDF that would appear in the presentation area
+2. Logo (favicon format) that would appear as favicon
+3. Application name that would appear in "About" - right side menu
+4. Welcome message that would appear on the public chat area
+5. index.html that shows up when a user logs-out of a class. Create your own version and put it in `/var/www/bigbluebutton-default/`
+
+In addition, you can change the following items in apply-config.sh:
+1. clientTitle
+2. appName
+3. copyright
+4. helpLink
 
 ## Change recording processing speed
 ```sh
