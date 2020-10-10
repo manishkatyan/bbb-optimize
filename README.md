@@ -281,6 +281,21 @@ echo password : $(echo -n $username | openssl dgst -binary -sha1 -hmac $secret |
 ```
 Then click `Add Server` and then `Gather candidates` button. If you have done everything correctly, you should see `Done` as the final result. If you do not get any response or if you see any error messages, please double check if you have diligently followed above steps.
 
+## Change favicon of Greenlight
+```sh
+cd greenlight
+mkdir cpp
+#copy your favicon to greenlight/cpp
+vi docker-compose.yml
+#add the following line to volumes block and restart greenlight
+- ${PWD}/cpp/favicon.ico:/usr/src/app/app/assets/images/favicon.ico
+docker-compose down
+docker-compose up -d
+```
+
+If you have installed Greenlight along with BigBlueButton (bbb-install.sh with -g flag), follow the steps above to change the favicon. Be careful with space and syntax, while adding the line above to volumes block in docker-compose.yml
+ 
+
 ## More on BigBlueButton
 
 Check-out the following projects to further extend features of BBB.
