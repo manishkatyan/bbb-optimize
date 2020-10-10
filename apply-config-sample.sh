@@ -58,6 +58,7 @@ echo "Set Helplink"
 sed -i 's/helpLink:.*/helpLink: http:\/\/higheredlab.com\/bigbluebutton-guide#using-bigbluebutton/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 
 echo "Fix for 1007 and 1020 - In external.xml set ext-rtp-ip and vars.xml - https://github.com/manishkatyan/bbb-optimize#fix-1007-and-1020-errors"
+echo "Have you changed Public IP of your BBB server mentioned in external_rtp_ip and external_sip_ip in apply-config.sh? Otherwise you will face issues."
 xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-rtp-ip"]/@value' --value "\$\${external_rtp_ip}" /opt/freeswitch/conf/sip_profiles/external.xml
 xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-sip-ip"]/@value' --value "\$\${external_sip_ip}" /opt/freeswitch/conf/sip_profiles/external.xml
 
