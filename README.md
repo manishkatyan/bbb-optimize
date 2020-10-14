@@ -54,30 +54,6 @@ Please keep in mind that it uses a more CPU which can affect the performance of 
 
 Hence, its better to change the schedule of processing internal for recordings along with this change. 
 
-## Change processing interval for recordings
-
-Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by creating an override for the default bbb-record-core.timer.
-
-For example, you can configure your BBB server to process recording job after most of classes are done in the day during off-peak hours (6 PM to 6 AM). 
-
-```sh
-sudo systemctl edit bbb-record-core.timer
-```
-
-Copy and paste the following contents and save the file:
-```sh
-[Timer]
-# Disable the default timer
-OnUnitInactiveSec=
-
-# Run every minute from 18:00 to 05:59
-OnCalendar=18,19,20,21,22,23,00,01,02,03,04,05:*
-```
-
-This will create an override at `/etc/systemd/system/bbb-record-core.timer.d/override.conf`.
-
-[Reference](https://docs.bigbluebutton.org/install#change-processing-interval-for-recordings)
-
 ## Use MP4 format for playback of recordings
 The presentation playback format encodes the video shared during the session (webcam and screen share) as .webm (VP8) files.
 
@@ -295,6 +271,32 @@ docker-compose up -d
 
 If you have installed Greenlight along with BigBlueButton (bbb-install.sh with -g flag), follow the steps above to change the favicon. Be careful with space and syntax, while adding the line above to volumes block in docker-compose.yml
  
+## Experimental - May or may not work
+### Change processing interval for recordings
+
+Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by creating an override for the default bbb-record-core.timer.
+
+For example, you can configure your BBB server to process recording job after most of classes are done in the day during off-peak hours (6 PM to 6 AM). 
+
+```sh
+sudo systemctl edit bbb-record-core.timer
+```
+
+Copy and paste the following contents and save the file:
+```sh
+[Timer]
+# Disable the default timer
+OnUnitInactiveSec=
+
+# Run every minute from 18:00 to 05:59
+OnCalendar=18,19,20,21,22,23,00,01,02,03,04,05:*
+```
+
+This will create an override at `/etc/systemd/system/bbb-record-core.timer.d/override.conf`.
+
+[Reference](https://docs.bigbluebutton.org/install#change-processing-interval-for-recordings)
+
+Warning: recording doesn't start on scheduled time. need to check the syntax for timer.
 
 ## More on BigBlueButton
 
