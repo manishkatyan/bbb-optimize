@@ -270,6 +270,12 @@ docker-compose up -d
 ```
 
 If you have installed Greenlight along with BigBlueButton (bbb-install.sh with -g flag), follow the steps above to change the favicon. Be careful with space and syntax, while adding the line above to volumes block in docker-compose.yml
+
+## Change logo of Recordings
+```sh
+# copy your logo.png to /var/bigbluebutton/playback/presentation/2.0
+```
+Do you want to see your logo in recording playback? Simply copy your logo to thr playback directory as mentioned above.
  
 ## Experimental - May or may not work
 ### Change processing interval for recordings
@@ -297,6 +303,16 @@ This will create an override at `/etc/systemd/system/bbb-record-core.timer.d/ove
 [Reference](https://docs.bigbluebutton.org/install#change-processing-interval-for-recordings)
 
 Warning: recording doesn't start on scheduled time. need to check the syntax for timer.
+
+### Reboot BBB server
+
+Rebooting BBB server every night would take care of any zombie process or memory leaks. 
+
+So you can set a cron job to reboot the server, say, at mid night. After rebooting BBB starts automatically. When you execute `bbb-conf --check` and `bbb-conf --status` you get correct results. 
+
+However, try to creare and join a meeting, and that doesn't work. You would have to manually start BBB with `bbb-conf --restart` and then everything works as expected.  
+
+
 
 ## More on BigBlueButton
 
