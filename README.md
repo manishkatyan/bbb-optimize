@@ -296,8 +296,6 @@ crontab -e
 
 [Reference](https://docs.bigbluebutton.org/dev/recording.html#enable-a-workflow)
 
-Warning: recording doesn't start on scheduled time. need to check the syntax for timer.
-
 ### Reboot BBB server
 
 Rebooting BBB server every night would take care of any zombie process or memory leaks. 
