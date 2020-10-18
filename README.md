@@ -280,27 +280,21 @@ Do you want to see your logo in recording playback? Simply copy your logo to thr
 ## Experimental - May or may not work
 ### Change processing interval for recordings
 
-Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by creating an override for the default bbb-record-core.timer.
-
-For example, you can configure your BBB server to process recording job after most of classes are done in the day during off-peak hours (6 PM to 6 AM). 
+Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by disabeling the presentation workflow before beginning of classes and enabeling it back after ending of classes.
 
 ```sh
-sudo systemctl edit bbb-record-core.timer
+# Clone bbb-optimize repository. Assuming cloned at /root/bbb-optimize/
+
+crontab -e
+
+# Add the following entries
+# Stop recording at 9 AM
+0 9 * * * /root/bbb-optimize/stop-recording.sh
+# Start recording at 6 PM
+0  18 * * * /root/bbb-optimize/start-recording.sh
 ```
 
-Copy and paste the following contents and save the file:
-```sh
-[Timer]
-# Disable the default timer
-OnUnitInactiveSec=
-
-# Run every minute from 18:00 to 05:59
-OnCalendar=18,19,20,21,22,23,00,01,02,03,04,05:*
-```
-
-This will create an override at `/etc/systemd/system/bbb-record-core.timer.d/override.conf`.
-
-[Reference](https://docs.bigbluebutton.org/install#change-processing-interval-for-recordings)
+[Reference](https://docs.bigbluebutton.org/dev/recording.html#enable-a-workflow)
 
 Warning: recording doesn't start on scheduled time. need to check the syntax for timer.
 
