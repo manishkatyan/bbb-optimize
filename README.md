@@ -211,13 +211,15 @@ Configure BigBlueButton to use the coturn server by following the instruction [h
 
 #### 3. Change in `/etc/turnserver.conf` on the Turn server:
 ```sh
-realm=bbbturn15.derspaneli.com
+realm=turn.higheredlab.com
 listening-port=3478 #gets error when you setup port 80
 tls-listening-port=443
 realm=FQDN of Turn server
 listening-ip=Public-IP-of-Turn server
 external-ip=Public-IP-of-Turn-server
 ```
+
+Follow the instructions [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html) to install Turn server and configure it as mentioned above.
 
 #### 4. Set external IP in WebRtcEndpoint.conf.ini 
 Edit `/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini`
