@@ -215,11 +215,13 @@ realm=turn.higheredlab.com
 listening-port=3478 #gets error when you setup port 80
 tls-listening-port=443
 realm=FQDN of Turn server
-listening-ip=Public-IP-of-Turn server
+listening-ip=0.0.0.0
 external-ip=Public-IP-of-Turn-server
 ```
 
 Follow the instructions [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html) to install Turn server and configure it as mentioned above.
+
+Start turn server by executing `sudo service coturn restart`
 
 #### 4. Set external IP in WebRtcEndpoint.conf.ini 
 Edit `/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini`
@@ -247,10 +249,10 @@ TURN username:
 TURN password: xxxx
 ```
 
-Execute the code below to generate username and password. Replace `f2355fea3841c9b91e9a64abe9850c61` with the `static-auth-secret` from `/etc/turnserver.conf` file on the turn server.
+Execute the code below to generate username and password. Replace `f23xxxea3841c9b91e9accccddde850c61` with the `static-auth-secret` from `/etc/turnserver.conf` file on the turn server.
 
 ```sh
-secret=f2355fea3841c9b91e9a64abe9850c61 && \
+secret=f23xxxea3841c9b91e9accccddde850c61 && \
 time=$(date +%s) && \
 expiry=8400 && \
 username=$(( $time + $expiry )) &&\
