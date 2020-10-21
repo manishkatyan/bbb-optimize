@@ -21,6 +21,9 @@ sed -i 's/defaultWelcomeMessageFooter=.*/defaultWelcomeMessageFooter=Use a heads
 echo "Let Moderators unmute users"
 sed -i 's/allowModsToUnmuteUsers=.*/allowModsToUnmuteUsers=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
+echo "Saves meeting events even if the meeting is not recorded"
+sed -i 's/keepEvents=.*/keepEvents=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+
 echo "Set maximum users per class to 100"
 sed -i 's/defaultMaxUsers=.*/defaultMaxUsers=100/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
