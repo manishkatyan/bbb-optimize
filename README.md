@@ -275,11 +275,14 @@ docker-compose up -d
 
 If you have installed Greenlight along with BigBlueButton (bbb-install.sh with -g flag), follow the steps above to change the favicon. Be careful with space and syntax, while adding the line above to volumes block in docker-compose.yml
 
-## Change logo of Recordings
+## Change logo and copyright of Recordings
 ```sh
 # copy your logo.png to /var/bigbluebutton/playback/presentation/2.0
+# edit defaultCopyright in /var/bigbluebutton/playback/presentation/2.0/playback.js
 ```
 Do you want to see your logo in recording playback? Simply copy your logo to thr playback directory as mentioned above.
+
+Do you want to remove copyright message "Recorded with BigBlueButton"? Edit variable defaultCopyright in playback.js.
  
 ## Experimental - May or may not work
 ### Change processing interval for recordings
