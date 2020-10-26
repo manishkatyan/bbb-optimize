@@ -284,7 +284,10 @@ Do you want to see your logo in recording playback? Simply copy your logo to thr
 
 Do you want to remove copyright message "Recorded with BigBlueButton"? Edit variable defaultCopyright in playback.js.
  
-## Experimental - May or may not work
+## Experimental
+
+We are still testing optimizations mentioned below. Please ensure these work correctly before deployiong in your production environment.
+
 ### Change processing interval for recordings
 
 Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by disabeling the presentation workflow before beginning of classes and enabeling it back after ending of classes.
