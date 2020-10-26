@@ -315,7 +315,7 @@ However, try to creare and join a meeting, and that doesn't work. You would have
 
 ## More on BigBlueButton
 
-Check-out the following projects to further extend features of BBB.
+Check-out the following apps to further extend features of BBB.
 
 ### [bbb-twilio](https://github.com/manishkatyan/bbb-twilio)
 
@@ -324,6 +324,10 @@ Integrate Twilio into BigBlueButton so that users can join a meeting with a dial
 ### [bbb-mp4](https://github.com/manishkatyan/bbb-mp4)
 
 With this app, you can convert a BigBlueButton recording into MP4 video and upload to S3. You can covert multiple MP4 videos in parallel or automate the conversion process.
+
+### [bbb-streaming](https://github.com/manishkatyan/bbb-streaming)
+
+Livestream your BigBlueButton classes on Youtube or Facebook to thousands of your users.
 
 ### [100 Most Googled Questions on BigBlueButton](https://higheredlab.com/bigbluebutton-guide/)
 
