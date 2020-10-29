@@ -5,6 +5,10 @@ source /etc/bigbluebutton/bbb-conf/apply-lib.sh
 
 enableUFWRules
 
+echo "Warning: change external_rtp_ip and external_sip_ip to the public IP of your BBB server."
+
+echo "Running three parallel Kurento media server"
+enableMultipleKurentos
 
 echo "Make the HTML5 client default"
 sed -i 's/attendeesJoinViaHTML5Client=.*/attendeesJoinViaHTML5Client=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
@@ -63,10 +67,11 @@ sed -i 's/copyright:.*/copyright: "©2020 HigherEdLab.com"/g' /usr/share/meteor/
 echo "Set Helplink"
 sed -i 's/helpLink:.*/helpLink: http:\/\/higheredlab.com\/bigbluebutton-guide#using-bigbluebutton/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 
-echo "Fix for 1007 and 1020 - In external.xml set ext-rtp-ip and vars.xml - https://github.com/manishkatyan/bbb-optimize#fix-1007-and-1020-errors"
-echo "Have you changed Public IP of your BBB server mentioned in external_rtp_ip and external_sip_ip in apply-config.sh? Otherwise you will face issues."
+echo "Set Copyright in Playback"
+sed -i "s/defaultCopyright = .*/defaultCopyright = \'<p>HigherEdLab.com<\/p>\';/g" /var/bigbluebutton/playback/presentation/2.0/playback.js
+
+echo "Fix for 1007 and 1020 - https://github.com/manishkatyan/bbb-optimize#fix-1007-and-1020-errors"
 xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-rtp-ip"]/@value' --value "\$\${external_rtp_ip}" /opt/freeswitch/conf/sip_profiles/external.xml
 xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-sip-ip"]/@value' --value "\$\${external_sip_ip}" /opt/freeswitch/conf/sip_profiles/external.xml
-
-xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_rtp_ip=")]/@data' --value "external_rtp_ip=178.63.82.13" /opt/freeswitch/conf/vars.xml
-xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_sip_ip=")]/@data' --value "external_sip_ip=178.63.82.13" /opt/freeswitch/conf/vars.xml
+xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_rtp_ip=")]/@data' --value "external_rtp_ip=176.9.30.208" /opt/freeswitch/conf/vars.xml
+xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_sip_ip=")]/@data' --value "external_sip_ip=176.9.30.208" /opt/freeswitch/conf/vars.xml
