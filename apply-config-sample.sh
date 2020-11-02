@@ -46,6 +46,9 @@ sed -i 's/lockSettingsDisableCam=.*/lockSettingsDisableCam=true/g' /usr/share/bb
 echo "Prevent users from joining classes from multiple devices"
 sed -i 's/allowDuplicateExtUserid=.*/allowDuplicateExtUserid=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
+echo "End the meeting when there are no moderators after a certain period of time. Prevents students from running amok."
+sed -i 's/endWhenNoModerator=.*/endWhenNoModerator=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+
 echo "Set maximum meeting duration to 120 minutes"
 sed -i 's/defaultMeetingDuration=.*/defaultMeetingDuration=120/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
