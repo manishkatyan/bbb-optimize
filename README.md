@@ -363,8 +363,6 @@ We are still testing optimizations mentioned below. Please ensure these work cor
 Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by stopping recordings process before beginning of classes and restarting it after ending of classes.
 
 ```sh
-# Clone bbb-optimize repository. Assuming cloned at /root/bbb-optimize/
-
 crontab -e
 
 # Add the following entries
