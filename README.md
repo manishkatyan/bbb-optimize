@@ -372,8 +372,6 @@ crontab -e
 0 18 * * 1-5 systemctl start bbb-record-core.timer
 ```
 
-[Reference](https://docs.bigbluebutton.org/dev/recording.html#enable-a-workflow)
-
 ### Reboot BBB server
 
 Rebooting BBB server every night would take care of any zombie process or memory leaks. 
