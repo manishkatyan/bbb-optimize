@@ -290,7 +290,7 @@ We are still testing optimizations mentioned below. Please ensure these work cor
 
 ### Change processing interval for recordings
 
-Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by disabeling the presentation workflow before beginning of classes and enabeling it back after ending of classes.
+Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by stopping recordings process before beginning of classes and restarting it after ending of classes.
 
 ```sh
 # Clone bbb-optimize repository. Assuming cloned at /root/bbb-optimize/
@@ -298,10 +298,10 @@ Normally, the BigBlueButton server begins processing the data recorded in a sess
 crontab -e
 
 # Add the following entries
-# Stop recording at 9 AM
-0 9 * * * /root/bbb-optimize/stop-recording.sh
-# Start recording at 6 PM
-0  18 * * * /root/bbb-optimize/start-recording.sh
+# Stop recording at 7 AM during week days
+0 7 * * 1-5 systemctl stop bbb-rap-process-worker.service bbb-record-core.timer
+# Start recording at 6 PM during week days; bbb-record-core will automatically launch all workers required for processing
+0 18 * * 1-5 systemctl start bbb-record-core.timer
 ```
 
 [Reference](https://docs.bigbluebutton.org/dev/recording.html#enable-a-workflow)
