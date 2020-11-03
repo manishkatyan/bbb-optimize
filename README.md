@@ -182,7 +182,7 @@ Edit bbb-record to also monitor bbb-rap-process-worker-2.service
 
 You will also need to copy the updated version of `rap-process-worker.rb` from [here](https://github.com/daronco/bigbluebutton/blob/9e5c386e6f89303c3f15f4552a8302d2e278d057/record-and-playback/core/scripts/rap-process-worker.rb) to the following location `/usr/local/bigbluebutton/core/scripts`.
 
-Ensure the right file permission 'chmod +x rap-process-worker.rb'
+Ensure the right file permission `chmod +x rap-process-worker.rb`
 
 After making the changes above restart recording process:
 ```sh
