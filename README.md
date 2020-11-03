@@ -156,6 +156,16 @@ Edit `/opt/freeswitch/etc/freeswitch/autoload_configs/opus.conf.xml` and copy-an
 
 [Reference](https://groups.google.com/g/bigbluebutton-setup/c/3Y7VBllwpX0/m/41X9j8bvCAAJ)
 
+## Run three parallel Kurento media servers
+
+Available in BigBluebutton 2.2.24 (and later releases of 2.2.x)
+
+Running three parallel Kurento media servers (KMS) – one dedicated to each type of media stream – increases the stability of media handling as the load for starting/stopping media streams spreads over three separate KMS processes. Also, it increases the reliability of media handling as a crash (and automatic restart) by one KMS will not affect the two.
+
+In our experience, we have see CPU usage spread across 3 KMS servers, resulting in better user experience. Hence, we highly recommend it. 
+
+The change required to enable 3 KMS is part of our apply-config-sample.sh included with this project.
+
 ## Fix 1007 and 1020 errors
 
 Follow the steps below to resolve 1007/1020 errors that your users may resport in case they are behind a firewall.
