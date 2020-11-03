@@ -166,6 +166,43 @@ In our experience, we have see CPU usage spread across 3 KMS servers, resulting 
 
 The change required to enable 3 KMS is part of our apply-config-sample.sh included with this project.
 
+## Optimize Recording
+
+### Process multiple recordings
+
+Make changes described in this PR: [Add option to rap-process-worker to accept a filtering pattern](https://github.com/bigbluebutton/bigbluebutton/pull/8394)
+
+```sh
+Edit /usr/lib/systemd/system/bbb-rap-process-worker.service and set the command to: ExecStart=/usr/local/bigbluebutton/core/scripts/rap-process-worker.rb -p "[0-4]$"
+Copy /usr/lib/systemd/system/bbb-rap-process-worker.service to /usr/lib/systemd/system/bbb-rap-process-worker-2.service
+Edit /usr/lib/systemd/system/bbb-rap-process-worker-2.service and set the command to ExecStart=/usr/local/bigbluebutton/core/scripts/rap-process-worker.rb -p "[5-9]$"
+Edit /usr/lib/systemd/system/bbb-record-core.target and add bbb-rap-process-worker-2.service to the list of services in Wants
+Edit bbb-record to also monitor bbb-rap-process-worker-2.service
+```
+
+You will also need to copy the updated version of `rap-process-worker.rb` from [here](https://github.com/daronco/bigbluebutton/blob/9e5c386e6f89303c3f15f4552a8302d2e278d057/record-and-playback/core/scripts/rap-process-worker.rb) to the following location `/usr/local/bigbluebutton/core/scripts`.
+
+Ensure the right file permission 'chmod +x rap-process-worker.rb'
+
+After making the changes above restart recording process:
+```sh
+systemctl daemon-reload 	
+systemctl stop bbb-rap-process-worker.service bbb-record-core.timer 	
+systemctl start bbb-record-core.timer
+```
+
+To verify that the above changes have taken in place, execute the following:
+```sh
+ps aux | grep rap-process-worker
+```
+
+You should see the following two processes:
+```sh
+/usr/bin/ruby /usr/local/bigbluebutton/core/scripts/rap-process-worker.rb -p [5-9]$
+/usr/bin/ruby /usr/local/bigbluebutton/core/scripts/rap-process-worker.rb -p [0-4]$
+```
+
+
 ## Fix 1007 and 1020 errors
 
 Follow the steps below to resolve 1007/1020 errors that your users may resport in case they are behind a firewall.
