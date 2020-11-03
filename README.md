@@ -202,6 +202,29 @@ You should see the following two processes:
 /usr/bin/ruby /usr/local/bigbluebutton/core/scripts/rap-process-worker.rb -p [0-4]$
 ```
 
+### Import already published recordings from one scalelite to another
+
+To migrate existing, already published recordings, from one Scalelite server to another Scalelite server, follow the steps below:
+
+* make a tar file from the old folder with a path in the form `presentation/<recording-id>/...`
+* copy this tar file to `/mnt/scalelite-recordings/var/bigbluebutton/spool/` on the New scalelite server
+* After a short while (a few minutes) the recording is automatically imported to the published folder by `scalelite-recording-importer` Docker service
+
+### Troubleshooting
+
+To investigate the processing of a particular recording, you can look at the log files.
+
+The `/var/log/bigbluebutton/bbb-rap-worker` log is a general log file that can be used to find which section of the recording processing is failing. It also logs a message if a recording process is skipped because the moderator did not push the record button.
+
+To investigate an error for a particular recording, check the following log files:
+```sh
+/var/log/bigbluebutton/archive-<recordingid>.log
+/var/log/bigbluebutton/<workflow>/process-<recordingid>.log
+/var/log/bigbluebutton/<workflow>/publish-<recordingid>.log
+```
+
+One common issue with recording is that your server is running out of free disk space. Please do check for it. 
+
 
 ## Fix 1007 and 1020 errors
 
