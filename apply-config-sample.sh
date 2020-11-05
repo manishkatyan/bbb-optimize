@@ -25,6 +25,9 @@ sed -i 's/defaultWelcomeMessageFooter=.*/defaultWelcomeMessageFooter=Use a heads
 echo "Let Moderators unmute users"
 sed -i 's/allowModsToUnmuteUsers=.*/allowModsToUnmuteUsers=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
+echo "Enable - See other viewers webcams"
+sed -i 's/webcamsOnlyForModerator=.*/webcamsOnlyForModerator=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+
 echo "Mute the class on start"
 sed -i 's/muteOnStart=.*/muteOnStart=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
