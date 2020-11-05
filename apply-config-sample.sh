@@ -43,6 +43,9 @@ sed -i 's/lockSettingsDisablePublicChat=.*/lockSettingsDisablePublicChat=true/g'
 echo "Disable shared note"
 sed -i 's/lockSettingsDisableNote=.*/lockSettingsDisableNote=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
+echo "Disable mic";
+sed -i 's/lockSettingsDisableMic=.*/lockSettingsDisableMic=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+
 echo "Prevent viewers from sharing webcams"
 sed -i 's/lockSettingsDisableCam=.*/lockSettingsDisableCam=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
