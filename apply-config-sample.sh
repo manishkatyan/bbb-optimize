@@ -49,6 +49,9 @@ sed -i 's/lockSettingsDisableNote=.*/lockSettingsDisableNote=true/g' /usr/share/
 echo "Disable mic";
 sed -i 's/lockSettingsDisableMic=.*/lockSettingsDisableMic=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
+echo "Disable - See other users in the Users list"
+sed -i 's/lockSettingsHideUserList=.*/lockSettingsHideUserList=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+
 echo "Prevent viewers from sharing webcams"
 sed -i 's/lockSettingsDisableCam=.*/lockSettingsDisableCam=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
