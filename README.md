@@ -201,6 +201,7 @@ You should see the following two processes:
 /usr/bin/ruby /usr/local/bigbluebutton/core/scripts/rap-process-worker.rb -p [5-9]$
 /usr/bin/ruby /usr/local/bigbluebutton/core/scripts/rap-process-worker.rb -p [0-4]$
 ```
+In case you don't see above two processes running, it's likely that you don't have any recording to process. You may want to record a test class using API-MATE and check if the above two processes start running after the end of the test class.
 
 ### Import already published recordings from one scalelite to another
 
