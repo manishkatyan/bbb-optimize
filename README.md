@@ -224,8 +224,17 @@ To investigate an error for a particular recording, check the following log file
 /var/log/bigbluebutton/<workflow>/publish-<recordingid>.log
 ```
 
-One common issue with recording is that your server is running out of free disk space. Please do check for it. 
+#### Check Free Disk Space
+One common issue with recording is that your server is running out of free disk space. Here is how to check for disk space usage:
 
+```sh
+apt install ncdu
+cd /var/bigbluebutton/published/presentation/
+# On Scalelite server, to go /mnt/scalelite-recordings/var/bigbluebutton/published/presentation
+ncdu
+``` 
+
+You should also check disk space used by log files in `/var/log/bigbluebutton` and `/opt/freeswitch/log`. 
 
 ## Fix 1007 and 1020 errors
 
