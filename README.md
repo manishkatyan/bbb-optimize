@@ -230,7 +230,7 @@ One common issue with recording is that your server is running out of free disk 
 ```sh
 apt install ncdu
 cd /var/bigbluebutton/published/presentation/
-# On Scalelite server, to go /mnt/scalelite-recordings/var/bigbluebutton/published/presentation
+# On Scalelite server, check /mnt/scalelite-recordings/var/bigbluebutton/published/presentation for recordings
 ncdu
 ``` 
 
