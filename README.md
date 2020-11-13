@@ -363,7 +363,34 @@ If you have installed Greenlight along with BigBlueButton (bbb-install.sh with -
 Do you want to see your logo in recording playback? Simply copy your logo to thr playback directory as mentioned above.
 
 Do you want to remove copyright message "Recorded with BigBlueButton"? Edit variable defaultCopyright in playback.js.
+
+## GDPR
+
+### No recording
+```sh
+# edit /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+disableRecordingDefault=true
+breakoutRoomsRecord=false
+```
+When a room is created in BigBlueButton that allows recordings (i.e., the recording button is visible) BigBlueButton will record the entire session. This is independent of the recording-button actually being pressed or not. A simpler solution is to stop recordings altogether.  
  
+### No logs
+
+* [Log rotation](https://docs.bigbluebutton.org/admin/privacy.html#general-log-rotation)
+* [BigBlueButton logging](https://docs.bigbluebutton.org/admin/privacy.html#bigbluebutton-logging)
+* [Nginx log](https://docs.bigbluebutton.org/admin/privacy.html#nginx)
+* [Freeswitch log](https://docs.bigbluebutton.org/admin/privacy.html#freeswitch)
+* [Coturn log](https://docs.bigbluebutton.org/admin/privacy.html#coturn)
+* [Scalelite log](https://docs.bigbluebutton.org/admin/privacy.html#scalelite-api-container-logs)
+
+### No Syslog entries
+```ssh
+# Edit /usr/lib/systemd/system/bbb-htlm5.service
+StandardOutput=null
+# Restart
+systemctl daemon-reload
+```
+
 ## Experimental
 
 We are still testing optimizations mentioned below. Please ensure these work correctly before deployiong in your production environment.
