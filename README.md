@@ -290,18 +290,51 @@ Nat filtering: Endpoint Independent Filtering
 Configure BigBlueButton to use the coturn server by following the instruction [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html#configure-bigbluebutton-to-use-the-coturn-server)
 
 #### 3. Change in `/etc/turnserver.conf` on the Turn server:
+
+Follow the instructions [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html) to install Turn server and configure it as mentioned below.
+
 ```sh
-realm=turn.higheredlab.com
-listening-port=3478 #gets error when you setup port 80
+listening-port=80 # Many users may not have any ports except 80 and 443 opened.
 tls-listening-port=443
+alt-listening-port=3478
+alt-tls-listening-port=5349
 realm=FQDN of Turn server
 listening-ip=0.0.0.0
 external-ip=Public-IP-of-Turn-server
+# Log to syslog by editing `/etc/turnserver.conf`. Reference - https://github.com/bigbluebutton/bbb-install/issues/163
+syslog
 ```
 
-Follow the instructions [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html) to install Turn server and configure it as mentioned above.
 
-Start turn server by executing `sudo service coturn restart`
+We use ports 80 and 443 for Coturn server. Since the Coturn server does not run with root authorizations by default , it must not bind its services to privileged ports (port range <1024). Hence, edit the file `/lib/systemd/system/coturn.service` by executing ‘systemctl edit --full coturn’ and add the following in `[Service]` section
+
+```sh
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+# After saving, execute `systemctl daemon-reload`
+# In case file /lib/systemd/system/coturn.service doesn’t exist, follow the tip here: https://stackoverflow.com/questions/47189606/configuration-coturn-on-ubuntu-not-working
+```
+
+Change ownership of certificates
+
+```sh
+# Change turn.higheredlab.com to FQDN of your coturn server
+chown -hR turnserver:turnserver /etc/letsencrypt/archive/turn.higheredlab.com/
+chown -hR turnserver:turnserver /etc/letsencrypt/live/turn.higheredlab.com/
+```
+
+Ensure that `ufw` firewall on your Turn server allows the following ports: 80, 443, 3478, 5439, and 49152:65535/udp
+
+To make coturn automatically restart at reboot: `systemctl enable coturn`
+
+To start coturn server: `systemctl start coturn`
+
+To check the status of coturn server: `systemctl start coturn`
+
+You can force using the TURN on Firefox browser. Open a Firefox tab and type `about:config`. Search for `media.peerconnection.ice.relay_only`. Set it to true. At this moment Firefox only use TURN relay. Now join a BigBlueButton session for this Firefox browser to see Turn server in action. 
+
+Using Chrome to test: Type `chrome://webrtc-internals` in a Chrome browser. Reference: `https://testrtc.com/find-webrtc-active-connection/`
+
+For testing purpose, you can manually start coturn server as follows: `turnserver -c /etc/turnserver.conf`
 
 #### 4. Set external IP in WebRtcEndpoint.conf.ini 
 Edit `/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini`
