@@ -306,7 +306,7 @@ syslog
 ```
 
 
-We use ports 80 and 443 for Coturn server. Since the Coturn server does not run with root authorizations by default , it must not bind its services to privileged ports (port range <1024). Hence, edit the file `/lib/systemd/system/coturn.service` by executing ‘systemctl edit --full coturn’ and add the following in `[Service]` section
+We use ports 80 and 443 for Coturn server. Since the Coturn server does not run with root authorizations by default , it must not bind its services to privileged ports (port range <1024). Hence, edit the file `/lib/systemd/system/coturn.service` by executing `systemctl edit --full coturn` and add the following in `[Service]` section
 
 ```sh
 AmbientCapabilities=CAP_NET_BIND_SERVICE
