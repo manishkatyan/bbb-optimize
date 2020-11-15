@@ -294,7 +294,7 @@ Configure BigBlueButton to use the coturn server by following the instruction [h
 Follow the instructions [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html) to install Turn server and configure it as mentioned below.
 
 ```sh
-listening-port=80 # Many users may not have any ports except 80 and 443 opened.
+listening-port=80 # Some users may not be able to connect to any ports except 80 and 443 because of firewalls.
 tls-listening-port=443
 alt-listening-port=3478
 alt-tls-listening-port=5349
