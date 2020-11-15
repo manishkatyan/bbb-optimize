@@ -341,7 +341,7 @@ Edit `/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini`
 
 Mention external or public IP address of the media server by uncommenting the line below. Doing so has the advantage of not needing to configure STUN/TURN for the media server.
 ```sh
-externalAddress=Public-IP-of-BBB-Server
+externalIPv4=Public-IP-of-BBB-Server
 ```
 
 STUN/TURN are needed only when the media server sits behind a NAT and needs to find out its own external IP address. However, if you set a static external IP address as mentioned above, then there is no need for the STUN/TURN auto-discovery. Hence, comment the following: using turn.higheredlab.com (IP address)
