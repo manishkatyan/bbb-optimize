@@ -289,9 +289,9 @@ Nat filtering: Endpoint Independent Filtering
 
 Configure BigBlueButton to use the coturn server by following the instruction [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html#configure-bigbluebutton-to-use-the-coturn-server)
 
-#### 3. Change in `/etc/turnserver.conf` on the Turn server:
+#### 3. Install Turn (Coturn) server:
 
-Follow the instructions [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html) to install Turn server and configure it as mentioned below.
+Follow the instructions [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html) to install Turn server and configure `/etc/turnserver.conf` as mentioned below.
 
 ```sh
 listening-port=80 # Some users may not be able to connect to any ports except 80 and 443 because of firewalls.
