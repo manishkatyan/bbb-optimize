@@ -268,19 +268,24 @@ Verify Turn server is accessible from your BBB serve. If you receive code 0x0001
 
 ```sh
 sudo apt install stun-client
-stun turn.higheredlab.com
+stun <your-turn-server>
 ```
-Here is another way to test whether a Stun server, we are using Google’s public Stun server, is accessible from your BBB server. Localport could be any available UDP port on your BBB server.
+Here is another way to test whether a Stun server, we are using Google’s public Stun server (stun.l.google.com:19302), is accessible from your BBB server. 
+
+Localport could be any available UDP port on your BBB server.
 
 ```sh
-sudo apt-get install -y stuntman-client $ stunclient --mode full --localport 30000 turn.higheredlab.com 3478
+sudo apt-get install -y stuntman-client 
+
+stunclient --mode full --localport 30000 <your-turn-server> <your-turn-server-port>
+
 ```
 Your output should be something like the following:
 
 ```sh
 Binding test: success
-Local address: 95.216.242.244:30000
-Mapped address: 95.216.242.244:30000
+Local address: <your-turn-server-ip>:30000
+Mapped address: <your-turn-server-ip>:30000
 Behavior test: success
 Nat behavior: Direct Mapping
 Filtering test: success
