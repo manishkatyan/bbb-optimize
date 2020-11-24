@@ -358,7 +358,7 @@ STUN/TURN are needed only when the media server sits behind a NAT and needs to f
 ```
 
 #### 5. Verify your media negotiation timeouts. 
-Recommend setting is to set `baseTimeout` to `30000` in `/usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml`
+Recommend setting is to set `baseTimeout` to `60000` in `/usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml`
 
 
 #### 6. Verify Turn is working
