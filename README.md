@@ -241,7 +241,7 @@ You should also check disk space used by log files in `/var/log/bigbluebutton` a
 Follow the steps below to resolve 1007/1020 errors that your users may resport in case they are behind a firewall.
 
 #### 1. Update `external.xml` and `vars.xml`
-Edit `/opt/freeswitch/conf/sip_profiles/external.xml` and change
+Edit `/opt/freeswitch/etc/freeswitch/sip_profiles/external.xml` and change
 ```xml
 <param name="ext-rtp-ip" value="$${local_ip_v4}"/>
 <param name="ext-sip-ip" value="$${local_ip_v4}"/>
@@ -252,7 +252,7 @@ To
 <param name="ext-sip-ip" value="$${external_sip_ip}"/>
 ```
 
-Edit `/opt/freeswitch/conf/vars.xml`, and change
+Edit `/opt/freeswitch/etc/freeswitch/vars.xml`, and change
 ```xml
 <X-PRE-PROCESS cmd="set" data="external_rtp_ip=stun:stun.freeswitch.org"/>
 <X-PRE-PROCESS cmd="set" data="external_sip_ip=stun:stun.freeswitch.org"/>
