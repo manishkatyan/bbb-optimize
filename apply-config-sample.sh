@@ -67,8 +67,8 @@ sed -i 's/defaultMeetingDuration=.*/defaultMeetingDuration=120/g' /usr/share/bbb
 echo "No listen only mode"
 sed -i 's/listenOnlyMode:.*/listenOnlyMode: false/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 
-echo "No audio check"
-sed -i 's/skipCheck:.*/skipCheck: true/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+echo "Enable audio check otherwise may face audio issue"
+sed -i 's/skipCheck:.*/skipCheck: false/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 
 echo "Set Client Title"
 sed -i 's/clientTitle:.*/clientTitle: Class++/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
