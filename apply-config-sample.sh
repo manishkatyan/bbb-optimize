@@ -29,7 +29,7 @@ echo "Enable - See other viewers webcams"
 sed -i 's/webcamsOnlyForModerator=.*/webcamsOnlyForModerator=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
 echo "Mute the class on start"
-sed -i 's/muteOnStart=.*/muteOnStart=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+sed -i 's/muteOnStart=.*/muteOnStart=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
 echo "Saves meeting events even if the meeting is not recorded"
 sed -i 's/keepEvents=.*/keepEvents=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
@@ -46,8 +46,9 @@ sed -i 's/lockSettingsDisablePublicChat=.*/lockSettingsDisablePublicChat=true/g'
 echo "Disable shared note"
 sed -i 's/lockSettingsDisableNote=.*/lockSettingsDisableNote=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
+# Enabeling this may create audio issue in 2.2.29
 echo "Disable mic";
-sed -i 's/lockSettingsDisableMic=.*/lockSettingsDisableMic=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+sed -i 's/lockSettingsDisableMic=.*/lockSettingsDisableMic=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
 echo "Disable - See other users in the Users list"
 sed -i 's/lockSettingsHideUserList=.*/lockSettingsHideUserList=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
