@@ -1,11 +1,12 @@
 #!/bin/bash
 
+# Public IP address of the BBB server
+PUBLIC_IP="148.251.131.28"
+
 # Pull in the helper functions for configuring BigBlueButton
 source /etc/bigbluebutton/bbb-conf/apply-lib.sh
 
 enableUFWRules
-
-echo "Warning: change external_rtp_ip and external_sip_ip to the public IP of your BBB server."
 
 echo "Running three parallel Kurento media server"
 enableMultipleKurentos
@@ -89,8 +90,8 @@ sed -i "s/defaultCopyright = .*/defaultCopyright = \'<p>HigherEdLab.com<\/p>\';/
 echo "Fix for 1007 and 1020 - https://github.com/manishkatyan/bbb-optimize#fix-1007-and-1020-errors"
 xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-rtp-ip"]/@value' --value "\$\${external_rtp_ip}" /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml
 xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-sip-ip"]/@value' --value "\$\${external_sip_ip}" /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml
-xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_rtp_ip=")]/@data' --value "external_rtp_ip=176.9.30.208" /opt/freeswitch/etc/freeswitch/vars.xml
-xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_sip_ip=")]/@data' --value "external_sip_ip=176.9.30.208" /opt/freeswitch/etc/freeswitch/vars.xml
+xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_rtp_ip=")]/@data' --value "external_rtp_ip=$PUBLIC_IP" /opt/freeswitch/etc/freeswitch/vars.xml
+xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_sip_ip=")]/@data' --value "external_sip_ip=$PUBLIC_IP" /opt/freeswitch/etc/freeswitch/vars.xml
 
 echo "Fix till 2.2.30 - https://github.com/bigbluebutton/bigbluebutton/issues/9667"
 yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml public.media.sipjsHackViaWs true
