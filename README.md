@@ -449,6 +449,19 @@ crontab -e
 0 18 * * 1-5 systemctl start bbb-record-core.timer
 ```
 
+You should change the timezone of your BBB server to that of your users for accurate cron job scheduling above. 
+
+```sh
+# Current timezone
+timedatectl
+
+# List of available timezone
+timedatectl list-timezones
+
+# Set new timezone by replacing Asia/Kolkata with your timezone
+timedatectl set-timezone Asia/Kolkata
+```
+
 ### Reboot BBB server
 
 Rebooting BBB server every night would take care of any zombie process or memory leaks. 
