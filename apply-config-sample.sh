@@ -25,10 +25,10 @@ sed -i 's/defaultWelcomeMessageFooter=.*/defaultWelcomeMessageFooter=Use a heads
 echo "Let Moderators unmute users"
 sed -i 's/allowModsToUnmuteUsers=.*/allowModsToUnmuteUsers=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
-echo "Enable - See other viewers webcams"
+echo "See other viewers webcams"
 sed -i 's/webcamsOnlyForModerator=.*/webcamsOnlyForModerator=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
-echo "Mute the class on start"
+echo "Don't Mute the class on start"
 sed -i 's/muteOnStart=.*/muteOnStart=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
 echo "Saves meeting events even if the meeting is not recorded"
@@ -47,10 +47,10 @@ echo "Disable shared note"
 sed -i 's/lockSettingsDisableNote=.*/lockSettingsDisableNote=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
 # Enabeling this may create audio issue in 2.2.29
-echo "Disable mic";
+echo "Enable mic";
 sed -i 's/lockSettingsDisableMic=.*/lockSettingsDisableMic=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
-echo "Disable - See other users in the Users list"
+echo "See other users in the Users list"
 sed -i 's/lockSettingsHideUserList=.*/lockSettingsHideUserList=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 
 echo "Prevent viewers from sharing webcams"
@@ -91,3 +91,8 @@ xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-rtp-ip"]
 xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-sip-ip"]/@value' --value "\$\${external_sip_ip}" /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml
 xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_rtp_ip=")]/@data' --value "external_rtp_ip=176.9.30.208" /opt/freeswitch/etc/freeswitch/vars.xml
 xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_sip_ip=")]/@data' --value "external_sip_ip=176.9.30.208" /opt/freeswitch/etc/freeswitch/vars.xml
+
+echo "Fix till 2.2.30 - https://github.com/bigbluebutton/bigbluebutton/issues/9667"
+yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml public.media.sipjsHackViaWs true
+sed -i 's/https/http/g'  /etc/bigbluebutton/nginx/sip.nginx 
+sed -i 's/7443/5066/g'  /etc/bigbluebutton/nginx/sip.nginx 
