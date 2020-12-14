@@ -18,7 +18,7 @@ sudo apt-get install -y xmlstarlet
 git clone https://github.com/manishkatyan/bbb-optimize.git
 cd bbb-optimize
 cp apply-config-sample.sh apply-config.sh
-cp apply-config.sh /etc/bigbluebutton/bbb-conf/apply-config.sh
+./replace-config.sh
 ```
 Edit `apply-config.sh` as appropriate. Comments with each of the customizations will help you understand that the implication of each of them and you will be able to change the default values.  
 
