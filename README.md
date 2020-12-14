@@ -18,6 +18,8 @@ sudo apt-get install -y xmlstarlet
 git clone https://github.com/manishkatyan/bbb-optimize.git
 cd bbb-optimize
 cp apply-config-sample.sh apply-config.sh
+
+# Edit apply-config.sh to set PUBLIC_IP to the public IP of your BBB server
 ./replace-config.sh
 ```
 Edit `apply-config.sh` as appropriate. Comments with each of the customizations will help you understand that the implication of each of them and you will be able to change the default values.  
