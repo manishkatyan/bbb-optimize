@@ -20,6 +20,8 @@ cd bbb-optimize
 cp apply-config-sample.sh apply-config.sh
 
 # Edit apply-config.sh to set PUBLIC_IP to the public IP of your BBB server
+
+# Apply changes and restart BBB
 ./replace-config.sh
 ```
 Edit `apply-config.sh` as appropriate. Comments with each of the customizations will help you understand that the implication of each of them and you will be able to change the default values.  
