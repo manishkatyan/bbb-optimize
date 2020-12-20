@@ -45,6 +45,16 @@ In addition, you can change the following items in apply-config.sh:
 3. copyright
 4. helpLink
 
+## Disable Shared Notes and Lower Webcam resolution
+```sh
+# Edit /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml and note > enabled > false
+
+# Edit /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml and set cameraProfiles > id: Low > default: true and cameraProfiles > id: Medium > default: false 
+```
+For K21 students, usually we disable Shared Notes, more to prevent users from writing inappropriate messages than to performance enhancement. 
+
+We also lower default webcam resolution.
+
 ## Change recording processing speed
 ```sh
 vi /usr/local/bigbluebutton/core/lib/recordandplayback/generators/video.rb
