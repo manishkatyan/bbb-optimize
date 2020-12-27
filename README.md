@@ -284,14 +284,14 @@ Verify Turn server is accessible from your BBB serve. If you receive code 0x0001
 sudo apt install stun-client
 stun <your-turn-server>
 ```
-Here is another way to test whether a Stun server, we are using Google’s public Stun server (stun.l.google.com:19302), is accessible from your BBB server. 
+Here is another way to test whether your Stun server is accessible from your BBB server. 
 
-Localport could be any available UDP port on your BBB server.
+Localport could be any available UDP port on your BBB server. 3478 is the port for the Stun server.
 
 ```sh
-sudo apt-get install -y stuntman-client 
+sudo apt-get install -y stuntman-client
 
-stunclient --mode full --localport 30000 <your-turn-server> <your-turn-server-port>
+stunclient --mode full --localport 30000 <your-stun-turn-server> 3478
 
 ```
 Your output should be something like the following:
