@@ -313,22 +313,19 @@ Configure BigBlueButton to use the coturn server by following the instruction [h
 Follow the instructions [here](https://docs.bigbluebutton.org/2.2/setup-turn-server.html) to install Turn server and configure `/etc/turnserver.conf` as mentioned below.
 
 ```sh
-listening-port=80 # Some users may not be able to connect to any ports except 80 and 443 because of firewalls.
-tls-listening-port=443
-alt-listening-port=3478
-alt-tls-listening-port=5349
+listening-port=3478 # stun server
+tls-listening-port=443 # turn server
 realm=FQDN of Turn server
-listening-ip=0.0.0.0
-external-ip=Public-IP-of-Turn-server
-# Log to syslog by editing `/etc/turnserver.conf`. Reference - https://github.com/bigbluebutton/bbb-install/issues/163
-syslog
 ```
 
 
-We use ports 80 and 443 for Coturn server. Since the Coturn server does not run with root authorizations by default , it must not bind its services to privileged ports (port range <1024). Hence, edit the file `/lib/systemd/system/coturn.service` by executing `systemctl edit --full coturn` and add the following in `[Service]` section
+We use ports 443 for Coturn server. Since the Coturn server does not run with root authorizations by default, it must not bind its services to privileged ports (port range <1024). Hence, edit the file `/lib/systemd/system/coturn.service` by executing `systemctl edit --full coturn` and add the following in `[Service]` section
+
+If the TURN server is used by many users concurrently, it might hit the open file-handles limit. Therefore it is recommended to increase this limit by adding `LimitNOFILE=49152` in the same file.
 
 ```sh
 AmbientCapabilities=CAP_NET_BIND_SERVICE
+LimitNOFILE=49152
 # After saving, execute `systemctl daemon-reload`
 # In case file /lib/systemd/system/coturn.service doesn’t exist, follow the tip here: https://stackoverflow.com/questions/47189606/configuration-coturn-on-ubuntu-not-working
 ```
@@ -341,13 +338,13 @@ chown -hR turnserver:turnserver /etc/letsencrypt/archive/turn.higheredlab.com/
 chown -hR turnserver:turnserver /etc/letsencrypt/live/turn.higheredlab.com/
 ```
 
-Ensure that `ufw` firewall on your Turn server allows the following ports: 80, 443, 3478, 5439, and 49152:65535/udp
+Ensure that the ufw firewall on your Turn server allows the following ports: 80, 443, 3478 and 49152:65535/udp. After running certbot, you can disable port 80. 
 
-To make coturn automatically restart at reboot: `systemctl enable coturn`
+To make coturn automatically restart at reboot: `systemctl enable coturn`
 
 To start coturn server: `systemctl start coturn`
 
-To check the status of coturn server: `systemctl start coturn`
+To check the status of coturn server: `systemctl status coturn`
 
 To view logs in real-time: `journalctl -u coturn -f` 
 
@@ -355,7 +352,7 @@ You can force using the TURN on Firefox browser. Open a Firefox tab and type `ab
 
 Using Chrome to test: Type `chrome://webrtc-internals` in a Chrome browser. Reference: `https://testrtc.com/find-webrtc-active-connection/`
 
-For testing purpose, you can manually start coturn server as follows: `turnserver -c /etc/turnserver.conf`
+To see logs for testing purpose, you can manually start coturn server as follows: `turnserver -c /etc/turnserver.conf`
 
 #### 4. Set external IP in WebRtcEndpoint.conf.ini 
 Edit `/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini`
