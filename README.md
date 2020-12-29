@@ -28,8 +28,10 @@ Edit `apply-config.sh` as appropriate. Comments with each of the customizations 
 
 ## Match with your branding
 ```sh
-cp default.pdf /var/www/bigbluebutton-default/
-cp favicon.ico /var/www/bigbluebutton-default/
+# added to apply-config-sample.sh. So no need to copy manually.
+# cp default.pdf /var/www/bigbluebutton-default/
+# cp favicon.ico /var/www/bigbluebutton-default/
+
 bbb-conf --restart
 ```
 You can update default BigBlueButton setup to match with your branding in the following ways:
