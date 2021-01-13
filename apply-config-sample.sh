@@ -92,8 +92,3 @@ xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-rtp-ip"]
 xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-sip-ip"]/@value' --value "\$\${external_sip_ip}" /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml
 xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_rtp_ip=")]/@data' --value "external_rtp_ip=$PUBLIC_IP" /opt/freeswitch/etc/freeswitch/vars.xml
 xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_sip_ip=")]/@data' --value "external_sip_ip=$PUBLIC_IP" /opt/freeswitch/etc/freeswitch/vars.xml
-
-echo "Fix till 2.2.30 - https://github.com/bigbluebutton/bigbluebutton/issues/9667"
-yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml public.media.sipjsHackViaWs true
-sed -i 's/https/http/g'  /etc/bigbluebutton/nginx/sip.nginx 
-sed -i 's/7443/5066/g'  /etc/bigbluebutton/nginx/sip.nginx 
