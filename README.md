@@ -436,7 +436,7 @@ When a room is created in BigBlueButton that allows recordings (i.e., the record
 * [Coturn log](https://docs.bigbluebutton.org/admin/privacy.html#coturn)
 * [Scalelite log](https://docs.bigbluebutton.org/admin/privacy.html#scalelite-api-container-logs)
 
-####1. BigBlueButton logging
+#### 1. BigBlueButton logging
 ```
 # BigBlueButton logs location: /var/log/bigbluebutton/bbb-web.log. To limit this log, set
 # (1) change appLogLevel from DEBUG to ERROR
@@ -454,7 +454,7 @@ vi /etc/bbb-apps-akka/application.conf (default DEBUG)
 vi /etc/bbb-apps-akka/logback.xml (default INFO DEBUG)
 ```
 
-####2. Nginx
+#### 2. Nginx
 ```
 # Nginx logs - change access log 
 vi /etc/nginx/nginx.conf
@@ -465,7 +465,7 @@ vi /etc/nginx/sites-available/bigbluebutton
 access_log /dev/null; (default /var/log/nginx/bigbluebutton.access.log)
 ```
 
-####3. Freeswitch
+#### 3. Freeswitch
 ```
 # Freeswitch logs - change loglevel and stdout-loglevel to ERROR (default DEBUG)
 vi /etc/bbb-fsesl-akka/application.conf
@@ -474,12 +474,12 @@ vi /etc/bbb-fsesl-akka/application.conf
 vi /etc/bbb-fsesl-akka/logback.xml
 ```
 
-####4. red5
+#### 4. red5
 ```
 # red5 - change root > level to ERROR and each logger to ERROR (default INFO)
 vi /etc/red5/logback.xml
 ```
-####5. kurento
+#### 5. kurento
 ```
 # export GST_DEBUG="1 …..” (Default is 3; Set it to 1, that is for Error)
 vi /etc/default/kurento-media-server
