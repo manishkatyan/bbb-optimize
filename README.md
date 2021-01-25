@@ -429,13 +429,6 @@ When a room is created in BigBlueButton that allows recordings (i.e., the record
  
 ### No logs
 
-* [Log rotation](https://docs.bigbluebutton.org/admin/privacy.html#general-log-rotation)
-* [BigBlueButton logging](https://docs.bigbluebutton.org/admin/privacy.html#bigbluebutton-logging)
-* [Nginx log](https://docs.bigbluebutton.org/admin/privacy.html#nginx)
-* [Freeswitch log](https://docs.bigbluebutton.org/admin/privacy.html#freeswitch)
-* [Coturn log](https://docs.bigbluebutton.org/admin/privacy.html#coturn)
-* [Scalelite log](https://docs.bigbluebutton.org/admin/privacy.html#scalelite-api-container-logs)
-
 #### 1. BigBlueButton logging
 ```
 # BigBlueButton logs location: /var/log/bigbluebutton/bbb-web.log. To limit this log, set
@@ -474,12 +467,12 @@ vi /etc/bbb-fsesl-akka/application.conf
 vi /etc/bbb-fsesl-akka/logback.xml
 ```
 
-#### 4. red5
+#### 4. Red5
 ```
 # red5 - change root > level to ERROR and each logger to ERROR (default INFO)
 vi /etc/red5/logback.xml
 ```
-#### 5. kurento
+#### 5. Kurento
 ```
 # export GST_DEBUG="1 ..." (Default is 3; Set it to 1, that is for Error)
 vi /etc/default/kurento-media-server
@@ -510,7 +503,12 @@ crontab -e
 0 3 * * 0,4 truncate -s 0 /var/lib/docker/containers/*/*-json.log
 ```
 
-#### 8. Log rotate
+#### 8. Coturn 
+```
+ln -s /dev/null /var/log/coturn.log
+```
+
+#### 9. Rorate Logs
 If you want to keep logs, you can set days for which logs should be kept on the BBB server.
 ```
 # Change log_history to 7 days (or as appropriate)
