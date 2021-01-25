@@ -436,6 +436,55 @@ When a room is created in BigBlueButton that allows recordings (i.e., the record
 * [Coturn log](https://docs.bigbluebutton.org/admin/privacy.html#coturn)
 * [Scalelite log](https://docs.bigbluebutton.org/admin/privacy.html#scalelite-api-container-logs)
 
+####1. BigBlueButton logging
+```
+# BigBlueButton logs location: /var/log/bigbluebutton/bbb-web.log. To limit this log, set
+# (1) change appLogLevel from DEBUG to ERROR
+vi /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+# (2) change each logger level to ERROR (default INFO and DEBUG)
+vi /usr/share/bbb-web/WEB-INF/classes/logback.xml
+
+# To avoid logging ip-addresses in bbb-webrtc-sfu change log > level to error (default verbose)
+vi /usr/local/bigbluebutton/bbb-webrtc-sfu/config/default.yml
+
+# To change logs level for chat usage and chat messages, change loglevel to ERROR
+vi /etc/bbb-transcode-akka/application.conf (default INFO)
+vi /etc/bbb-transcode-akka/logback.xml (default INFO, DEBUG, WARN]
+vi /etc/bbb-apps-akka/application.conf (default DEBUG)
+vi /etc/bbb-apps-akka/logback.xml (default INFO DEBUG)
+```
+
+####2. Nginx
+```
+# Nginx logs - change access log 
+vi /etc/nginx/nginx.conf
+access_log /dev/null; (default /var/log/nginx/access.log)
+
+# Nginx logs - change access log
+vi /etc/nginx/sites-available/bigbluebutton
+access_log /dev/null; (default /var/log/nginx/bigbluebutton.access.log)
+```
+
+####3. Freeswitch
+```
+# Freeswitch logs - change loglevel and stdout-loglevel to ERROR (default DEBUG)
+vi /etc/bbb-fsesl-akka/application.conf
+
+# Freeswitch logs - change logger to ERROR (default INFO, DEBUG, WARN)
+vi /etc/bbb-fsesl-akka/logback.xml
+```
+
+####4. red5
+```
+# red5 - change root > level to ERROR and each logger to ERROR (default INFO)
+vi /etc/red5/logback.xml
+```
+####5. kurento
+```
+# export GST_DEBUG="1 …..” (Default is 3; Set it to 1, that is for Error)
+vi /etc/default/kurento-media-server
+```
+
 ### No Syslog entries
 ```ssh
 # Edit /usr/lib/systemd/system/bbb-htlm5.service
