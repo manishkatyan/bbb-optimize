@@ -481,8 +481,49 @@ vi /etc/red5/logback.xml
 ```
 #### 5. kurento
 ```
-# export GST_DEBUG="1 …..” (Default is 3; Set it to 1, that is for Error)
+# export GST_DEBUG="1 ..." (Default is 3; Set it to 1, that is for Error)
 vi /etc/default/kurento-media-server
+```
+
+#### 6. Greenlight
+
+```
+vi .env
+
+# Comment the following live to send logs to log/production.log 
+# RAILS_LOG_TO_STDOUT=true
+
+# Create symlink, replacing $GREENLIGHTDIR with the absolute path where Greenlight is installed. 
+ln -s /dev/null $GREENLIGHTDIR/log/production.log
+```
+
+#### 7. Scalelite
+The Scalelite API container is logging user activities. For example: Who joined which meeting.
+This logfile will never be deleted automatically and it will get quite large, if scalelite is serving many users.
+Hence, delete logs via cronjobs.
+
+```
+# Login as root
+crontab -e
+
+# add to delete all Docker-Container-Logfiles. At 03:00 every sunday and thursday.
+0 3 * * 0,4 truncate -s 0 /var/lib/docker/containers/*/*-json.log
+```
+
+#### 8. Log rotate
+If you want to keep logs, you can set days for which logs should be kept on the BBB server.
+```
+# Change log_history to 7 days (or as appropriate)
+vi /etc/cron.daily/bigluebutton
+
+# Change rotate to 7 (days) or as appropriate (this rotates log for /var/log/bigbluebutton/(bbb-rap-worker.log|sanity.log)
+vi /etc/logrotate.d/bbb-record-core.logrotate
+
+# Change rotate to 7 (days) or as appropriate (this rotates log for /var/log/bbb-webrtc-sfu/)
+vi bbb-webrtc-sfu.logrotate
+
+# Change MaxHistory to 7 (days) or as appropriate (this rotates log for /var/log/bigbluebutton/bbb-web.log)
+vi /usr/share/bbb-web/WEB-INF/classes/logback.xml
 ```
 
 ### No Syslog entries
