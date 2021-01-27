@@ -193,7 +193,7 @@ vi /usr/share/meteor/bundle/systemd_start.sh
 
 service bbb-html5 restart
 ```
-Thanks to [Stefan L. for sharing] (https://github.com/bigbluebutton/bigbluebutton/issues/11183)
+Thanks to [Stefan L. for sharing](https://github.com/bigbluebutton/bigbluebutton/issues/11183)
 
 ## Optimize Recording
 
