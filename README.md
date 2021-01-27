@@ -182,6 +182,19 @@ In our experience, we have see CPU usage spread across 3 KMS servers, resulting 
 
 The change required to enable 3 KMS is part of our apply-config-sample.sh included with this project.
 
+## Optimize NodeJS
+
+The configuration change below can result in 40% improvement in NodeJS performance, allowing you to host up to 40% more concurrent users per server.
+
+```sh
+vi /usr/share/meteor/bundle/systemd_start.sh
+
+# Replace the last line by PORT=3000 /usr/share/$NODE_VERSION/bin/node --max-old-space-size=4096 --max_semi_space_size=128 main.js
+
+service bbb-html5 restart
+```
+Thanks to [Stefan L. for sharing] (https://github.com/bigbluebutton/bigbluebutton/issues/11183)
+
 ## Optimize Recording
 
 ### Process multiple recordings
