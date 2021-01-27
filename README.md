@@ -227,6 +227,30 @@ To migrate existing, already published recordings, from one Scalelite server to 
 * copy this tar file to `/mnt/scalelite-recordings/var/bigbluebutton/spool/` on the New scalelite server
 * After a short while (a few minutes) the recording is automatically imported to the published folder by `scalelite-recording-importer` Docker service
 
+### Secure recordings
+
+With default BBB installation, anyone can share playback recording of your classes on Facebook or WhatsApp for everyone to view. 
+
+To secure your recordings, you can make it accessible only from a certain domain. For example, allow recordings to be accessed from theh domain of your Moodle site.
+
+```sh
+# edit /etc/bigbluebutton/nginx/presentation.nginx
+
+  location /playback/presentation {
+    root   /var/bigbluebutton;
+    index index.html index.htm;
+
+  # Restrict access
+    valid_referers server_names
+      bbb.youdomain.com;
+    if ($invalid_referer) {
+      return 404;
+    }
+  # End - Restrict access
+  }
+
+``` 
+
 ### Troubleshooting
 
 To investigate the processing of a particular recording, you can look at the log files.
