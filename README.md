@@ -569,11 +569,7 @@ StandardOutput=null
 systemctl daemon-reload
 ```
 
-## Experimental
-
-We are still testing optimizations mentioned below. Please ensure these work correctly before deployiong in your production environment.
-
-### Change processing interval for recordings
+## Change processing interval for recordings
 
 Normally, the BigBlueButton server begins processing the data recorded in a session soon after the session finishes. However, you can change the timing for processing by stopping recordings process before beginning of classes and restarting it after ending of classes.
 
@@ -600,15 +596,16 @@ timedatectl list-timezones
 timedatectl set-timezone Asia/Kolkata
 ```
 
-### Reboot BBB server
+## Reboot BBB server
 
 Rebooting BBB server every night would take care of any zombie process or memory leaks. 
 
-So you can set a cron job to reboot the server, say, at mid night. After rebooting BBB starts automatically. When you execute `bbb-conf --check` and `bbb-conf --status` you get correct results. 
+```sh
+crontab -e
 
-However, try to creare and join a meeting, and that doesn't work. You would have to manually start BBB with `bbb-conf --restart` and then everything works as expected.  
-
-
+# reboot every night at 10 PM
+0 22   *   *   *    /sbin/shutdown -r +5
+``` 
 
 ## More on BigBlueButton
 
