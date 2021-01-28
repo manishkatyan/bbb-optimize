@@ -545,7 +545,7 @@ crontab -e
 ln -s /dev/null /var/log/coturn.log
 ```
 
-#### 9. Rorate Logs
+#### 9. Rotate Logs
 If you want to keep logs, you can set days for which logs should be kept on the BBB server.
 ```
 # Change log_history to 7 days (or as appropriate)
