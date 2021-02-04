@@ -360,11 +360,11 @@ realm=FQDN of Turn server
 
 We use ports 443 for Coturn server. Since the Coturn server does not run with root authorizations by default, it must not bind its services to privileged ports (port range <1024). Hence, edit the file `/lib/systemd/system/coturn.service` by executing `systemctl edit --full coturn` and add the following in `[Service]` section
 
-If the TURN server is used by many users concurrently, it might hit the open file-handles limit. Therefore it is recommended to increase this limit by adding `LimitNOFILE=49152` in the same file.
+If the TURN server is used by many users concurrently, it might hit the open file-handles limit. Therefore it is recommended to increase this limit by adding `LimitNOFILE=1048576` in the same file.
 
 ```sh
 AmbientCapabilities=CAP_NET_BIND_SERVICE
-LimitNOFILE=49152
+LimitNOFILE=1048576
 # After saving, execute `systemctl daemon-reload`
 # In case file /lib/systemd/system/coturn.service doesn’t exist, follow the tip here: https://stackoverflow.com/questions/47189606/configuration-coturn-on-ubuntu-not-working
 ```
