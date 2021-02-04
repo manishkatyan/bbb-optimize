@@ -368,7 +368,6 @@ LimitNOFILE=1048576
 # After saving, execute `systemctl daemon-reload`
 # In case file /lib/systemd/system/coturn.service doesn’t exist, follow the tip here: https://stackoverflow.com/questions/47189606/configuration-coturn-on-ubuntu-not-working
 ```
-
 Change ownership of certificates
 
 ```sh
@@ -376,6 +375,8 @@ Change ownership of certificates
 chown -hR turnserver:turnserver /etc/letsencrypt/archive/turn.higheredlab.com/
 chown -hR turnserver:turnserver /etc/letsencrypt/live/turn.higheredlab.com/
 ```
+
+Ensure that the coturn has binded to port 443 with netstat -antp | grep 443. Also restart your TURN server and ensure that coturn is running (and binding to port 443 after restart).
 
 Ensure that the ufw firewall on your Turn server allows the following ports: 80, 443, 3478 and 49152:65535/udp. After running certbot, you can disable port 80. 
 
