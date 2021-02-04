@@ -388,7 +388,8 @@ To check the status of coturn server: `systemctl status coturn`
 
 To view logs in real-time: `journalctl -u coturn -f` 
 
-You can force using the TURN on Firefox browser. Open a Firefox tab and type `about:config`. Search for `media.peerconnection.ice.relay_only`. Set it to true. At this moment Firefox only use TURN relay. Now join a BigBlueButton session for this Firefox browser to see Turn server in action. 
+You can force using the TURN on Firefox browser. Open a Firefox tab and type `about:config`. Search for `media.peerconnection.ice.relay_only`. Set it to true. At this moment Firefox only use TURN relay. Now join a BigBlueButton session for this Firefox browser to see Turn server in action.
+In another tab on Firefox, type `about:webrtc` to see the status of webrtc. Click on `show details` to see the url of stun/turn server being used with `success` message. 
 
 Using Chrome to test: Type `chrome://webrtc-internals` in a Chrome browser. Reference: `https://testrtc.com/find-webrtc-active-connection/`
 
