@@ -609,6 +609,27 @@ crontab -e
 0 22   *   *   *    /sbin/shutdown -r +5
 ``` 
 
+## Experimental
+
+We are still testing the tips below. Use at your own discretion.
+
+### Greenlight: Error
+
+Do you get the following error in Greenlight: `Server Error - Invalid BigBlueButton Endpoint and Secret`
+
+Of course you should verify that you have given correct BBB URL and Secret in .env file of Greenlight. 
+
+In addition, you can the the following tip:
+
+When BigBlueButton is running on a server, various component of BigBlueButton need to make connections to itself using the external hostname. Programs running within the BigBlueButton server that try to connect to the external hostname should reach BigBlueButton itself.
+
+To enable the BigBlueButton server to connect to itself using the external hostname, edit file /etc/hosts and add the line
+EXTERNAL_IP_ADDRESS EXTERNAL_HOST_NAME
+
+where EXTERNAL_IP_ADDRESS with the external IP of your firewall and EXTERNAL_HOST_NAME with the external hostname of your firewall. For example, the addition to /etc/hosts would be 172.34.56.78 bigbluebutton.example.com
+
+[Reference](https://github.com/bigbluebutton/greenlight/issues/970#issuecomment-742610399)
+
 ## More on BigBlueButton
 
 Check-out the following apps to further extend features of BBB.
