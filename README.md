@@ -619,7 +619,7 @@ Do you get the following error in Greenlight: `Server Error - Invalid BigBlueBut
 
 Of course you should verify that you have given correct BBB URL and Secret in .env file of Greenlight. 
 
-In addition, you can the the following tip:
+In addition, you can try the following tip:
 
 When BigBlueButton is running on a server, various component of BigBlueButton need to make connections to itself using the external hostname. Programs running within the BigBlueButton server that try to connect to the external hostname should reach BigBlueButton itself.
 
