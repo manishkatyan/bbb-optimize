@@ -630,6 +630,18 @@ where EXTERNAL_IP_ADDRESS with the external IP of your firewall and EXTERNAL_HOS
 
 [Reference](https://github.com/bigbluebutton/greenlight/issues/970#issuecomment-742610399)
 
+## BigBlueButton Tech Support
+
+Are you facing difficulties with your BigBlueButton server?
+
+Lean on our expertise to smoothly run your BigBlueButton server.
+
+Get 24×7 connected with our Tech team. On facing any difficulties, just message us and we’ll promptly fix it.
+
+Start today with a monthly subscription for $59 per BBB server.
+
+[Learn More](https://higheredlab.com/bigbluebutton-support/) about the scope of Tech support.
+
 ## More on BigBlueButton
 
 Check-out the following apps to further extend features of BBB.
