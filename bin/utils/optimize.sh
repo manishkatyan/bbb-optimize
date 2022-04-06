@@ -17,7 +17,7 @@ fi
 
 if [ ! -z $DEFAULT_WELCOME_MESSAGE  ]; then
     echo "Setting Welcome message"
-    sed -i 's/defaultWelcomeMessage=.*/defaultWelcomeMessage=$DEFAULT_WELCOME_MESSAGE/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/defaultWelcomeMessage=.*/defaultWelcomeMessage=$DEFAULT_WELCOME_MESSAGE/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
 if [ ! -z $DEFAULT_WELCOME_MESSAGE_FOOTER ]; then 
