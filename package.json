@@ -1,0 +1,26 @@
+{
+  "name": "bigbluebutton-optimize",
+  "version": "2.0.1",
+  "description": "",
+  "bin": {
+    "bbb-optimize": "./bin/index.js"
+  },
+  "scripts": {},
+  "author": {
+    "name": "HigherEdLab.com",
+    "email": "support@higheredlab.com",
+    "url": "https://higheredlab.com/"
+  },
+  "maintainers": [
+    {
+      "name": "HigherEdLab.com",
+      "email": "support@higheredlab.com",
+      "url": "https://higheredlab.com/"
+    }
+  ],
+  "dependencies": {
+    "fs-extra": "^10.0.1",
+    "yargs": "^17.3.1"
+  },
+  "license": "MIT"
+}
