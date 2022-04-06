@@ -5,7 +5,7 @@ const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers');
 const fs = require('fs-extra')
 const argv = yargs(hideBin(process.argv)).argv  
-let PATH = '/usr/lib/node_modules/bigbluebutton-analytics'
+let PATH = '/usr/lib/node_modules/bigbluebutton-optimize'
 
 try {
     if( ! argv["env-file"] ){
