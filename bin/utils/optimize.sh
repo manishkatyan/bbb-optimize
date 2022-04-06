@@ -38,7 +38,7 @@ fi
 
 if [ "$MUTE_ON_START" = true ]; then
     echo "Don't Mute the class on start"
-    sed -i 's/muteOnStart=.*/muteOnStart=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i 's/muteOnStart=.*/muteOnStart=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
 if [ "$DEFAULT_KEEP_EVENTS" = true ]; then
@@ -83,7 +83,7 @@ fi
 
 if [ "$ALLOW_DUPLICATE_USER_ID" = true ]; then
     echo "Prevent users from joining classes from multiple devices"
-    sed -i 's/allowDuplicateExtUserid=.*/allowDuplicateExtUserid=false/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i 's/allowDuplicateExtUserid=.*/allowDuplicateExtUserid=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
 if [ "$END_WHEN_NO_MODERATOR" = true ]; then
@@ -123,7 +123,7 @@ fi
 
 if [ "$SKIP_AUDIO_CHECK" = true ]; then
     echo "Enable audio check otherwise may face audio issue"
-    sed -i 's/skipCheck:.*/skipCheck: false/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i 's/skipCheck:.*/skipCheck: true/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
 if [ "$ENABLE_DICTATION" = true ]; then
@@ -153,7 +153,7 @@ fi
 
 if [ ! -z $HELP_LINK ]; then
     echo "Set Helplink"
-    sed -i 's/helpLink:.*/helpLink: http:\/\/higheredlab.com\/bigbluebutton-guide#using-bigbluebutton/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/helpLink:.*/helpLink: $HELP_LINK/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
 

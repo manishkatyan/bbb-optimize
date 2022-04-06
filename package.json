@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton-optimize",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "",
   "bin": {
     "bbb-optimize": "./bin/index.js"
@@ -18,6 +18,11 @@
       "url": "https://higheredlab.com/"
     }
   ],
+  "homepage": "https://github.com/manishkatyan/bbb-optimize#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manishkatyan/bbb-optimize.git"
+  },
   "dependencies": {
     "fs-extra": "^10.0.1",
     "yargs": "^17.3.1"
