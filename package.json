@@ -1,6 +1,6 @@
 {
-  "name": "bbb-optimize",
-  "version": "1.0.0",
+  "name": "bigbluebutton-optimize",
+  "version": "2.0.2",
   "description": "",
   "bin": {
     "bbb-optimize": "./bin/index.js"
