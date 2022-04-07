@@ -8,7 +8,7 @@ source <(cat ./env | \
     sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
 set +a 
 
-if [ "$ENABLE_MULTIPLE_KURENTO" = true ]; then
+if [ ! -z "$ENABLE_MULTIPLE_KURENTO" ]; then
     # Pull in the helper functions for configuring BigBlueButton
     source /etc/bigbluebutton/bbb-conf/apply-lib.sh
     echo "Running three parallel Kurento media server"
@@ -26,69 +26,69 @@ if [ ! -z "$DEFAULT_WELCOME_MESSAGE_FOOTER" ]; then
 fi
 
 
-if [ "$ALLOW_MODS_TO_UNMUTE_USERS" = true ]; then
+if [ ! -z "$ALLOW_MODS_TO_UNMUTE_USERS" ]; then
     echo "Let Moderators unmute users"
-    sed -i 's/allowModsToUnmuteUsers=.*/allowModsToUnmuteUsers=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/allowModsToUnmuteUsers=.*/allowModsToUnmuteUsers=$ALLOW_MODS_TO_UNMUTE_USERS/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$WEBCAM_ONLY_FOR_MODERATOR" = true ]; then
+if [ ! -z "$WEBCAM_ONLY_FOR_MODERATOR" ]; then
     echo "See other viewers webcams"
-    sed -i 's/webcamsOnlyForModerator=.*/webcamsOnlyForModerator=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/webcamsOnlyForModerator=.*/webcamsOnlyForModerator=$WEBCAM_ONLY_FOR_MODERATOR/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$MUTE_ON_START" = true ]; then
+if [ ! -z "$MUTE_ON_START" ]; then
     echo "Don't Mute the class on start"
-    sed -i 's/muteOnStart=.*/muteOnStart=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/muteOnStart=.*/muteOnStart=$MUTE_ON_START/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$DEFAULT_KEEP_EVENTS" = true ]; then
+if [ ! -z "$DEFAULT_KEEP_EVENTS" ]; then
     echo "Saves meeting events even if the meeting is not recorded"
-    sed -i 's/defaultKeepEvents=.*/defaultKeepEvents=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/defaultKeepEvents=.*/defaultKeepEvents=$DEFAULT_KEEP_EVENTS/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ ! -z $DEFAULT_MAX_USERS ]; then
+if [ ! -z "$DEFAULT_MAX_USERS" ]; then
     echo "Set maximum users per class to $DEFAULT_MAX_USERS"
     sed -i "s/defaultMaxUsers=.*/defaultMaxUsers=$DEFAULT_MAX_USERS/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$LOCK_PRIVATE_CHAT" = true ]; then
+if [ ! -z "$LOCK_PRIVATE_CHAT" ]; then
     echo "Disable private chat"
-    sed -i 's/lockSettingsDisablePrivateChat=.*/lockSettingsDisablePrivateChat=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/lockSettingsDisablePrivateChat=.*/lockSettingsDisablePrivateChat=$LOCK_PRIVATE_CHAT/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$LOCK_PUBLIC_CHAT" = true ]; then
+if [ ! -z "$LOCK_PUBLIC_CHAT" ]; then
     echo "Disable public chat"
-    sed -i 's/lockSettingsDisablePublicChat=.*/lockSettingsDisablePublicChat=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/lockSettingsDisablePublicChat=.*/lockSettingsDisablePublicChat=$LOCK_PUBLIC_CHAT/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$LOCK_SHARED_NOTES" = true ]; then
+if [ ! -z "$LOCK_SHARED_NOTES" ]; then
     echo "Disable shared note"
-    sed -i 's/lockSettingsDisableNote=.*/lockSettingsDisableNote=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/lockSettingsDisableNote=.*/lockSettingsDisableNote=$LOCK_SHARED_NOTES/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$LOCK_MICROPHONE" = true ]; then
+if [ ! -z "$LOCK_MICROPHONE" ]; then
     echo "Enable mic";
-    sed -i 's/lockSettingsDisableMic=.*/lockSettingsDisableMic=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/lockSettingsDisableMic=.*/lockSettingsDisableMic=$LOCK_MICROPHONE/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$HIDE_USER_LIST" = true ]; then
+if [ ! -z "$HIDE_USER_LIST" ]; then
     echo "See other users in the Users list"
-    sed -i 's/lockSettingsHideUserList=.*/lockSettingsHideUserList=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/lockSettingsHideUserList=.*/lockSettingsHideUserList=$HIDE_USER_LIST/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$LOCK_WEBCAM" = true ]; then
+if [ ! -z "$LOCK_WEBCAM" ]; then
     echo "Prevent viewers from sharing webcams"
-    sed -i 's/lockSettingsDisableCam=.*/lockSettingsDisableCam=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/lockSettingsDisableCam=.*/lockSettingsDisableCam=$LOCK_WEBCAM/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi 
 
-if [ "$ALLOW_DUPLICATE_USER_ID" = true ]; then
+if [ ! -z "$ALLOW_DUPLICATE_USER_ID" ]; then
     echo "Prevent users from joining classes from multiple devices"
-    sed -i 's/allowDuplicateExtUserid=.*/allowDuplicateExtUserid=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/allowDuplicateExtUserid=.*/allowDuplicateExtUserid=$ALLOW_DUPLICATE_USER_ID/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$END_WHEN_NO_MODERATOR" = true ]; then
+if [ ! -z "$END_WHEN_NO_MODERATOR" ]; then
     echo "End the meeting when there are no moderators after a certain period of time. Prevents students from running amok."
-    sed -i 's/endWhenNoModerator=.*/endWhenNoModerator=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/endWhenNoModerator=.*/endWhenNoModerator=$END_WHEN_NO_MODERATOR/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
 if [ ! -z $END_WHEN_NO_MODERATOR_DELAY ]; then
@@ -101,9 +101,9 @@ if [ ! -z $LOG_LEVEL ]; then
     sed -i "s/appLogLevel=.*/appLogLevel=$LOG_LEVEL/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$DISABLE_RECORDING" = true  ]; then
+if [ ! -z "$DISABLE_RECORDING"  ]; then
     echo "Disable recording"
-    sed -i "s/disableRecordingDefault=.*/disableRecordingDefault=true/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/disableRecordingDefault=.*/disableRecordingDefault=$DISABLE_RECORDING/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
 if [ ! -z $MEETING_DURATION ]; then
@@ -116,24 +116,24 @@ if [ ! -z $LEARNING_DASHBOARD_CLEANUP_DELAY ]; then
     sed -i "s/learningDashboardCleanupDelayInMinutes=.*/learningDashboardCleanupDelayInMinutes=$LEARNING_DASGBOARD_CLEANUP_DELAY/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ "$ENABLE_LISTEN_ONLY_MODE" = true ]; then
+if [ ! -z "$ENABLE_LISTEN_ONLY_MODE" ]; then
     echo "Enable listen only mode"
-    sed -i 's/listenOnlyMode:.*/listenOnlyMode: true/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/listenOnlyMode:.*/listenOnlyMode: $ENABLE_LISTEN_ONLY_MODE/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
-if [ "$SKIP_AUDIO_CHECK" = true ]; then
+if [ ! -z "$SKIP_AUDIO_CHECK" ]; then
     echo "Enable audio check otherwise may face audio issue"
-    sed -i 's/skipCheck:.*/skipCheck: true/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/skipCheck:.*/skipCheck: $SKIP_AUDIO_CHECK/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
-if [ "$ENABLE_DICTATION" = true ]; then
+if [ ! -z "$ENABLE_DICTATION" ]; then
     echo "Enable dictation"
-    sed -i 's/enableDictation:.*/enableDictation: true/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/enableDictation:.*/enableDictation: $ENABLE_DICTATION/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
-if [ "$CHAT_START_CLOSED" = true ]; then
+if [ ! -z "$CHAT_START_CLOSED" ]; then
     echo "Close chat on start"
-    sed -i 's/startClosed:.*/startClosed: true/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/startClosed:.*/startClosed: $CHAT_START_CLOSED/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
 if [ ! -z "$CLIENT_TITLE" ]; then
@@ -190,30 +190,50 @@ if [ ! -z $DEFAULT_PRESENTATION ]; then
 fi
 
 
-if [ "$ENABLE_SHARED_NOTES" = true ]; then
+if [ ! -z "$ENABLE_SHARED_NOTES" ]; then
     echo "Enable shared notes"
-    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml public.note.enabled true
+    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml public.note.enabled $ENABLE_SHARED_NOTES
 fi
 
 if [ "$OPTIMIZE_RECORDING_FOR_IOS" = true ]; then
     echo " Use MP4 format for playback of recordings"
-    sed -i 's/- webm/# - webm/g' /usr/local/bigbluebutton/core/scripts/presentation.yml
-    sed -i 's/# - mp4/- mp4/g' /usr/local/bigbluebutton/core/scripts/presentation.yml
+    sed -i "s/- webm/# - webm/g" /usr/local/bigbluebutton/core/scripts/presentation.yml
+    sed -i "s/# - mp4/- mp4/g" /usr/local/bigbluebutton/core/scripts/presentation.yml
 fi
-
+if [ "$OPTIMIZE_RECORDING_FOR_IOS" = false ]; then
+    echo " Use MP4 format for playback of recordings"
+    sed -i "s/# - webm/- webm/g" /usr/local/bigbluebutton/core/scripts/presentation.yml
+    sed -i "s/- mp4/# - mp4/g" /usr/local/bigbluebutton/core/scripts/presentation.yml
+fi
 
 if [ "$ENABLE_MEDIASOUP" = true ]; then
     echo "Enable mediasoup"
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml public.kurento.signalCandidates false
-    sed -i 's/#mediaServer: Kurento/mediaServer: mediasoup/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
-    sed -i 's/#videoMediaServer: Kurento/videoMediaServer: mediasoup/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
-    sed -i 's/#listenOnlyMediaServer: Kurento/listenOnlyMediaServer: mediasoup/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/#mediaServer: Kurento/mediaServer: mediasoup/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/#videoMediaServer: Kurento/videoMediaServer: mediasoup/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/#listenOnlyMediaServer: Kurento/listenOnlyMediaServer: mediasoup/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+fi
+
+if [ "$ENABLE_MEDIASOUP" = false ]; then
+    echo "Enable mediasoup"
+    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml public.kurento.signalCandidates false
+    sed -i "s/mediaServer: mediasoup/#mediaServer: Kurento/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/videoMediaServer: mediasoup/#videoMediaServer: Kurento/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/listenOnlyMediaServer: mediasoup/#listenOnlyMediaServer: Kurento/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
 if [ "$LOWER_WEBCAM_RESOLUTION" = true ]; then
     echo "Set default webcam profile as low"
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==low).default' true
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==medium).default' false
+    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==high).default' false
+    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==hd).default' false
+fi
+
+if [ "$LOWER_WEBCAM_RESOLUTION" = false ]; then
+    echo "Set default webcam profile as low"
+    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==low).default' false
+    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==medium).default' true
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==high).default' false
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==hd).default' false
 fi
