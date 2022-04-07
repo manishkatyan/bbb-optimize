@@ -1,6 +1,6 @@
 # BigBlueButton-Optimize</h1>
 
-You can easily perform optimization to your BigBlueButton server.
+You can easily optimize your BigBlueButton server.
 
 <a href="https://www.npmjs.com/package/bigbluebutton-optimize">
 <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/manishkatyan/bbb-optimize?label=npm&logo=npm">
@@ -13,66 +13,91 @@ You can easily perform optimization to your BigBlueButton server.
 
 ## ✨ Features
 
-- **Branding**: You can custumize your branding
-- **Session optimization**: You can optimize sessions.
-- **Lock Settings**: Control how the lock settings should be for viewer
-- **layout Settings**: Controle the sesson layout such as close chat area on start.
-- **Fix 1007 and 1020 audio errors**: Easily fix audio error
-- **Video optimization**: Perform video optimization such as enable mediasoup.
+- **Branding**
+- **Session settings**
+- **Lock Settings**
+- **Audio and Video optimization**
 
 <br/><br/>
 
 ## 🖐 Requirements
 
-To view analytics, you would need a BigBlueButton 2.4.4 server.
+To install this package, you would need a BigBlueButton 2.4.x server.
 
 <br/><br/>
 
 ## ⏳ Installation
 
 ```bash
-# Install bbb-analytics CLI globally
+# Install bbb-opimize CLI globally
 npm i -g bigbluebutton-optimize
 
-#Install dependecies
-bbb-optimize --env-file=<env file path>
+#Run optimization. Replace ENV_FILE with your env file
+bbb-optimize --env-file=ENV_FILE
+
+```
+
+## Example env file
+
+```bash
+#Set welcome message
+DEFAULT_WELCOME_MESSAGE=Welcome to my awesome session
+
+# Change default bigbluebutton logo; default=/var/www/bigbluebutton-default/logo.png
+DEFAULT_LOGO=/root/branding/logo.png
+
+# Change default bigbluebutton favicon; default=/var/www/bigbluebutton-default/favicon.ico
+DEFAULT_FAVICON=/root/branding/favicon.ico
+
+#Mute the session on start; default false
+MUTE_ON_START=true
+
+#lock settings
+LOCK_PRIVATE_CHAT=true
+
+#Enable mediasoup for webcam and screensharing instread of kurento
+ENABLE_MEDIASOUP=true
 
 ```
 
 ## Available optimization options
 
+### Branding
+
 ```bash
-#Branding options
 #Set welcome message
 DEFAULT_WELCOME_MESSAGE=
 
 #set welcome message footer
 DEFAULT_WELCOME_MESSAGE_FOOTER=
 
-
-# logo that will appier in bigbluebutton; default=/var/www/bigbluebutton-default/logo.png
+# Change default bigbluebutton logo; default /var/www/bigbluebutton-default/logo.png
 DEFAULT_LOGO=
 
-# Favicon that will appier in bigbluebutton; default=/var/www/bigbluebutton-default/favicon.ico
+# Change default bigbluebutton favicon; default /var/www/bigbluebutton-default/favicon.ico
 DEFAULT_FAVICON=
 
-# default.pdf that will appier in bigbluebutton; default=/var/www/bigbluebutton-default/default.pdf
+# Change default bigbluebutton presentation; default /var/www/bigbluebutton-default/default.pdf
 DEFAULT_PRESENTATION=
 
-#Set title and it will be set as BigBlueButton meeting tab name
+#Set title and it will be set as your bigbluebutton meeting tab name
 CLIENT_TITLE=
 APP_NAME=
 
 #Set copyright
 COPY_RIGHT=
 
-#Help link, That will appier in BigBlueButton help button
+#Change default help link for your bigbluebutton session
 HELP_LINK=
+```
 
-#default false
+### Sessions
+
+```bash
+#Enable this to allow moderators to unmute viwers; default false
 ALLOW_MODS_TO_UNMUTE_USERS=
 
-#If set true only moderator can see all users webcam, viewer can see only his and moderator webcam; default false
+#If set true, only moderator can see all users webcam, viewer can see only his and moderator webcam; default false
 WEBCAM_ONLY_FOR_MODERATOR=
 #Mute the session on start; default false
 MUTE_ON_START=
@@ -101,42 +126,50 @@ ENABLE_SHARED_NOTES=
 
 # Number of minutes that Learning Dashboard will be available after the end of the meeting
 # if 0, the Learning Dashboard will keep available permanently; default 2
-LEARNING_DASGBOARD_CLEANUP_DELAY=
+LEARNING_DASHBOARD_CLEANUP_DELAY=
 
 # Default duration of the meeting in minutes. If set to 0 the meeting does'nt end.
 #default 0
 MEETING_DURATION=
 
-#default value is true
+#Enable listen only mode; default true
 ENABLE_LISTEN_ONLY_MODE=
 
-#default value is false
+#Set this to true to skip audio check after joining the session; default false
 SKIP_AUDIO_CHECK=
 
-#default value is false
+#Set this true to enable dictation; default false
 ENABLE_DICTATION=
+```
 
-#Minimize the chat section on start; default value is false
-CHAT_START_CLOSED=
+### Lock
 
+```bash
 #Default lock settings
+#Lock the private chat; default false
 LOCK_PRIVATE_CHAT=
+#Lock the public chat; default false
 LOCK_PUBLIC_CHAT=
+#Lock the shared notes ; default false
 LOCK_SHARED_NOTES=
+#Lock the mic ; default false
 LOCK_MICROPHONE=
+#Lock the webcam ; default false
 LOCK_WEBCAM=
+#If enabled, viewers will not able to see other viewers; default false
 HIDE_USER_LIST=
+```
 
-#Set the log level for bbb; possible values are: INFO, DEBUG, WARN, ERROR,; default DBUG
-LOG_LEVEL=
+### Audio and Video
 
-#Enable mediasoup for webcam and screensharing instread of kurento
+```bash
+#Enable mediasoup for webcam and screensharing instread of kurento; default false
 ENABLE_MEDIASOUP=
 
-#Enable multiple kurento for better  performance
+#Enable multiple kurento for better performance; default false
 ENABLE_MULTIPLE_KURENTO=
 
-#Set the default webcam resolution as low
+#Set the default webcam resolution as low; default false
 LOWER_WEBCAM_RESOLUTION=
 
 #Enable recording optimization for ios devices
@@ -148,6 +181,15 @@ PUBLIC_IP=
 
 ```
 
+### Miscellaneous settings
+
+```bash
+#Minimize the chat section on start; default value is false
+CHAT_START_CLOSED=
+#Set the log level for bbb; possible values are: INFO, DEBUG, WARN, ERROR,; default DBUG
+LOG_LEVEL=
+```
+
 <br/><br/>
 
 ## 📝 License
@@ -155,3 +197,7 @@ PUBLIC_IP=
 [MIT License](LICENSE.md)
 
 Copyright (c) [HigherEdLab.com](https://higheredlab.com/)
+
+```
+
+```

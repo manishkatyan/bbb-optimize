@@ -10,9 +10,9 @@ set +a
 
 if [ "$ENABLE_MULTIPLE_KURENTO" = true ]; then
     # Pull in the helper functions for configuring BigBlueButton
-    # source /etc/bigbluebutton/bbb-conf/apply-lib.sh
+    source /etc/bigbluebutton/bbb-conf/apply-lib.sh
     echo "Running three parallel Kurento media server"
-    # enableMultipleKurentos
+    enableMultipleKurentos
 fi
 
 if [ ! -z $DEFAULT_WELCOME_MESSAGE  ]; then
@@ -111,7 +111,7 @@ if [ ! -z $MEETING_DURATION ]; then
     sed -i "s/defaultMeetingDuration=.*/defaultMeetingDuration=$MEETING_DURATION/g"  /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ ! -z $LEARNING_DASGBOARD_CLEANUP_DELAY ]; then
+if [ ! -z $LEARNING_DASHBOARD_CLEANUP_DELAY ]; then
     echo "Keep Learning Dashboard data"
     sed -i "s/learningDashboardCleanupDelayInMinutes=.*/learningDashboardCleanupDelayInMinutes=$LEARNING_DASGBOARD_CLEANUP_DELAY/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
@@ -158,11 +158,15 @@ fi
 
 
 if [ "$FIX_1007_AND_1020" = true ]; then
-    echo "Fix for 1007 and 1020 - https://github.com/manishkatyan/bbb-optimize#fix-1007-and-1020-errors"
-    xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-rtp-ip"]/@value' --value "\$\${external_rtp_ip}" /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml
-    xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-sip-ip"]/@value' --value "\$\${external_sip_ip}" /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml
-    xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_rtp_ip=")]/@data' --value "external_rtp_ip=$PUBLIC_IP" /opt/freeswitch/etc/freeswitch/vars.xml
-    xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_sip_ip=")]/@data' --value "external_sip_ip=$PUBLIC_IP" /opt/freeswitch/etc/freeswitch/vars.xml
+    if [ ! -z $PUBLIC_IP ]; then
+        echo "Fix for 1007 and 1020 - https://github.com/manishkatyan/bbb-optimize#fix-1007-and-1020-errors"
+        xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-rtp-ip"]/@value' --value "\$\${external_rtp_ip}" /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml
+        xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-sip-ip"]/@value' --value "\$\${external_sip_ip}" /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml
+        xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_rtp_ip=")]/@data' --value "external_rtp_ip=$PUBLIC_IP" /opt/freeswitch/etc/freeswitch/vars.xml
+        xmlstarlet edit --inplace --update '//X-PRE-PROCESS[@cmd="set" and starts-with(@data, "external_sip_ip=")]/@data' --value "external_sip_ip=$PUBLIC_IP" /opt/freeswitch/etc/freeswitch/vars.xml
+    else
+        echo "Invalid PUBLIC_IP"
+    fi
 fi
 
 
@@ -190,6 +194,7 @@ if [ "$ENABLE_SHARED_NOTES" = true ]; then
     echo "Enable shared notes"
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml public.note.enabled true
 fi
+
 if [ "$OPTIMIZE_RECORDING_FOR_IOS" = true ]; then
     echo " Use MP4 format for playback of recordings"
     sed -i 's/- webm/# - webm/g' /usr/local/bigbluebutton/core/scripts/presentation.yml
@@ -204,7 +209,6 @@ if [ "$ENABLE_MEDIASOUP" = true ]; then
     sed -i 's/#videoMediaServer: Kurento/videoMediaServer: mediasoup/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
     sed -i 's/#listenOnlyMediaServer: Kurento/listenOnlyMediaServer: mediasoup/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
-
 
 if [ "$LOWER_WEBCAM_RESOLUTION" = true ]; then
     echo "Set default webcam profile as low"
