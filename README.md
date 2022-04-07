@@ -1,6 +1,6 @@
 # BigBlueButton-Optimize</h1>
 
-You can easily preform optimization to your BigBlueButton server.
+You can easily perform optimization to your BigBlueButton server.
 
 <a href="https://www.npmjs.com/package/bigbluebutton-optimize">
 <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/manishkatyan/bbb-optimize?label=npm&logo=npm">
@@ -13,11 +13,12 @@ You can easily preform optimization to your BigBlueButton server.
 
 ## ✨ Features
 
-- **Branding**: Detailed insights into attendance, audio/video/chat usage and activity scores of attendees
-- **Session optimization**: Unlike the default BigBlueButton install, analytics is available even after the classes end
-- **Lock Settings**: View the recordings of all your BigBlueButton online classes as well
-- **layout Settings**: Simply install BBB-Analytics npm package on your BigBlueButton sever
-- **Fix 1007 and 1020 audio errors**: Easily sort and search through records with paginations
+- **Branding**: You can custumize your branding
+- **Session optimization**: You can optimize sessions.
+- **Lock Settings**: Control how the lock settings should be for viewer
+- **layout Settings**: Controle the sesson layout such as close chat area on start.
+- **Fix 1007 and 1020 audio errors**: Easily fix audio error
+- **Video optimization**: Perform video optimization such as enable mediasoup.
 
 <br/><br/>
 
