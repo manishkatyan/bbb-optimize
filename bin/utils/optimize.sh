@@ -4,7 +4,7 @@ ENV_FILE=$1
 
 set -a
 
-source <(cat $ENV_FILE | \
+source <(cat ./env | \
     sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
 set +a 
 
@@ -15,12 +15,12 @@ if [ "$ENABLE_MULTIPLE_KURENTO" = true ]; then
     enableMultipleKurentos
 fi
 
-if [ ! -z $DEFAULT_WELCOME_MESSAGE  ]; then
+if [ ! -z "$DEFAULT_WELCOME_MESSAGE"  ]; then
     echo "Setting Welcome message"
     sed -i "s/defaultWelcomeMessage=.*/defaultWelcomeMessage=$DEFAULT_WELCOME_MESSAGE/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
-if [ ! -z $DEFAULT_WELCOME_MESSAGE_FOOTER ]; then 
+if [ ! -z "$DEFAULT_WELCOME_MESSAGE_FOOTER" ]; then 
     echo "Setting Welcome message footer"
     sed -i "s/defaultWelcomeMessageFooter=.*/defaultWelcomeMessageFooter=$DEFAULT_WELCOME_MESSAGE_FOOTER/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
@@ -136,22 +136,22 @@ if [ "$CHAT_START_CLOSED" = true ]; then
     sed -i 's/startClosed:.*/startClosed: true/g' /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
-if [ ! -z $CLIENT_TITLE ]; then
+if [ ! -z "$CLIENT_TITLE" ]; then
     echo "Set Client Title"
     sed -i "s/clientTitle:.*/clientTitle: $CLIENT_TITLE/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi 
 
-if [ ! -z $APP_NAME ]; then
+if [ ! -z "$APP_NAME" ]; then
     echo "Set App Title"
     sed -i "s/appName:.*/appName: $APP_NAME/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
-if [ ! -z $COPY_RIGHT ]; then
+if [ ! -z "$COPY_RIGHT" ]; then
     echo "Set Copyright"
-    sed -i "s/copyright:.*/copyright: \"$COPY_RIGHT\"/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+    sed -i "s/copyright:.*/copyright: $COPY_RIGHT/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
-if [ ! -z $HELP_LINK ]; then
+if [ ! -z "$HELP_LINK" ]; then
     echo "Set Helplink"
     sed -i "s/helpLink:.*/helpLink: $HELP_LINK/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi

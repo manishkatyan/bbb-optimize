@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton-optimize",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "You can easily optimize your BigBlueButton server",
   "bin": {
     "bbb-optimize": "./bin/index.js"
