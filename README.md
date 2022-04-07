@@ -35,6 +35,8 @@ npm i -g bigbluebutton-optimize
 #Run optimization. Replace ENV_FILE with your env file
 bbb-optimize --env-file=ENV_FILE
 
+#Restart the bbb
+bbb-conf --restart
 ```
 
 ## Example env file

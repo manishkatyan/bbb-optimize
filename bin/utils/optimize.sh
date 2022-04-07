@@ -237,5 +237,5 @@ if [ "$LOWER_WEBCAM_RESOLUTION" = false ]; then
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==high).default' false
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==hd).default' false
 fi
-
-echo "Please restart the BigBlueButton server"
+echo ""
+echo "====== Please restart the BigBlueButton  ======"
