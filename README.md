@@ -90,6 +90,7 @@ APP_NAME=
 COPY_RIGHT=
 
 #Change default help link for your bigbluebutton session
+#example, HELP_LINK=https:\/\/www.example.com\/help
 HELP_LINK=
 ```
 
