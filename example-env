@@ -1,0 +1,104 @@
+#Branding options
+#Set welcome message
+DEFAULT_WELCOME_MESSAGE=
+
+#set welcome message footer
+DEFAULT_WELCOME_MESSAGE_FOOTER=
+
+
+# logo that will appier in bigbluebutton; default=/var/www/bigbluebutton-default/logo.png
+DEFAULT_LOGO=
+
+# Favicon that will appier in bigbluebutton; default=/var/www/bigbluebutton-default/favicon.ico
+DEFAULT_FAVICON=
+
+# default.pdf that will appier in bigbluebutton; default=/var/www/bigbluebutton-default/default.pdf
+DEFAULT_PRESENTATION=
+
+#Set title and it will be set as BigBlueButton meeting tab name
+CLIENT_TITLE=
+APP_NAME=
+
+#Set copyright 
+COPY_RIGHT=
+
+#Help link, That will appier in BigBlueButton help button
+HELP_LINK=
+
+#default false
+ALLOW_MODS_TO_UNMUTE_USERS=
+
+#If set true only moderator can see all users webcam, viewer can see only his and moderator webcam; default false
+WEBCAM_ONLY_FOR_MODERATOR=
+#Mute the session on start; default false
+MUTE_ON_START=
+#Keep the meeting events; default false
+DEFAULT_KEEP_EVENTS=
+#Set the max users that can join a single BigBlueButton session; default 0
+#If set to 0, There will not be any limit
+DEFAULT_MAX_USERS=
+
+#Allow users to join the same session using multiple devices; default false
+ALLOW_DUPLICATE_USER_ID=
+
+# Param to end the meeting when there are no moderators after a certain period of time.
+# Needed for classes where teacher gets disconnected and can't get back in. Prevents
+# students from running amok; default false
+END_WHEN_NO_MODERATOR=
+
+# Number of minutes to wait for moderator rejoin before end meeting (if `END_WHEN_NO_MODERATOR=true` ); default 2 
+END_WHEN_NO_MODERATOR_DELAY=
+
+#Disable the recording even if record=true passed in create call; default false
+DISABLE_RECORDING=false
+
+#Enable the shared notes; default false
+ENABLE_SHARED_NOTES=true
+
+# Number of minutes that Learning Dashboard will be available after the end of the meeting
+# if 0, the Learning Dashboard will keep available permanently; default 2
+LEARNING_DASGBOARD_CLEANUP_DELAY=0
+
+# Default duration of the meeting in minutes. If set to 0 the meeting does'nt end.
+#default 0
+MEETING_DURATION=0
+
+#default value is true
+ENABLE_LISTEN_ONLY_MODE=false
+
+#default value is false
+SKIP_AUDIO_CHECK=true
+
+#default value is false
+ENABLE_DICTATION=true
+
+#Minimize the chat section on start; default value is false
+CHAT_START_CLOSED=true
+
+#Default lock settings
+LOCK_PRIVATE_CHAT=true
+LOCK_PUBLIC_CHAT=false
+LOCK_SHARED_NOTES=true
+LOCK_MICROPHONE=false
+LOCK_WEBCAM=true
+HIDE_USER_LIST=true
+
+#Set the log level for bbb; possible values are: INFO, DEBUG, WARN, ERROR,; default DBUG
+LOG_LEVEL=ERROR
+
+#Enable mediasoup for webcam and screensharing instread of kurento
+ENABLE_MEDIASOUP=true
+
+#Enable multiple kurento for better  performance
+ENABLE_MULTIPLE_KURENTO=true
+
+#Set the default webcam resolution as low 
+LOWER_WEBCAM_RESOLUTION=true
+
+#Enable recording optimization for ios devices
+OPTIMIZE_RECORDING_FOR_IOS=true
+FIX_1007_AND_1020=true
+
+#If FIX_1007_AND_1020 is set to true, the add Your bbb server PUBLIC_IP
+PUBLIC_IP=1.1.1.1
+
