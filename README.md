@@ -15,7 +15,7 @@ You can easily optimize your BigBlueButton server.
 
 - **Branding**
 - **Session settings**
-- **Lock Settings**
+- **Lock settings**
 - **Audio and Video optimization**
 
 <br/><br/>
@@ -94,7 +94,7 @@ COPY_RIGHT=
 HELP_LINK=
 ```
 
-### Sessions
+### Session settings
 
 ```bash
 #Enable this to allow moderators to unmute viwers; default false
@@ -145,7 +145,7 @@ SKIP_AUDIO_CHECK=
 ENABLE_DICTATION=
 ```
 
-### Lock
+### Lock settings
 
 ```bash
 #Default lock settings
@@ -163,7 +163,7 @@ LOCK_WEBCAM=
 HIDE_USER_LIST=
 ```
 
-### Audio and Video
+### Audio and Video optimization
 
 ```bash
 #Enable mediasoup for webcam and screensharing instread of kurento; default false
