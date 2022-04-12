@@ -1,6 +1,6 @@
 # BigBlueButton-Optimize</h1>
 
-You can easily optimize your BigBlueButton server.
+You can easily optimize your BigBlueButton server to meet your specific requirements for branding and feature customizations.
 
 <a href="https://www.npmjs.com/package/bigbluebutton-optimize">
 <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/manishkatyan/bbb-optimize?label=npm&logo=npm">
