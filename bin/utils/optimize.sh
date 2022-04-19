@@ -157,7 +157,7 @@ if [ ! -z "$HELP_LINK" ]; then
 fi
 
 
-if [ "$FIX_1007_AND_1020" = true ]; then
+if [ "$FIX_AUDIO_ERROR" = true ]; then
     if [ ! -z $PUBLIC_IP ]; then
         echo "Fix for 1007 and 1020 - https://github.com/manishkatyan/bbb-optimize#fix-1007-and-1020-errors"
         xmlstarlet edit --inplace --update '//profile/settings/param[@name="ext-rtp-ip"]/@value' --value "\$\${external_rtp_ip}" /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml
@@ -222,20 +222,16 @@ if [ "$ENABLE_MEDIASOUP" = false ]; then
     sed -i "s/listenOnlyMediaServer: mediasoup/#listenOnlyMediaServer: Kurento/g" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 fi
 
-if [ "$LOWER_WEBCAM_RESOLUTION" = true ]; then
-    echo "Set default webcam profile as low: $LOWER_WEBCAM_RESOLUTION"
-    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==low).default' true
+if [ ! -z "$WEBCAM_RESOLUTION"  ]; then
+    echo "Set default webcam profile as : $WEBCAM_RESOLUTION"
+    #Set everything false
+    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==low).default' false
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==medium).default' false
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==high).default' false
     yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==hd).default' false
-fi
 
-if [ "$LOWER_WEBCAM_RESOLUTION" = false ]; then
-    echo "Set default webcam profile as low: $LOWER_WEBCAM_RESOLUTION"
-    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==low).default' false
-    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==medium).default' true
-    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==high).default' false
-    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml 'public.kurento.cameraProfiles.(id==hd).default' false
+    #set webcam resolution
+    yq w -i /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml "public.kurento.cameraProfiles.(id==$WEBCAM_RESOLUTION).default" true
 fi
 echo ""
 echo "====== Please restart the BigBlueButton  ======"
