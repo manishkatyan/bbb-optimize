@@ -209,6 +209,8 @@ CHAT_START_CLOSED=false
 LOG_LEVEL=DEBUG
 ```
 
+<h2>Additional optimization</h2>
+
 ### Stream better quality audio
 Edit `/usr/local/bigbluebutton/bbb-webrtc-sfu/config/default.yml` and make the following changes
 ```sh
