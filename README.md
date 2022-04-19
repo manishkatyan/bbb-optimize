@@ -459,6 +459,35 @@ crontab -e
 ```
 
 
+## More on BigBlueButton
+
+Check-out the following apps to further extend features of BBB.
+
+### [bbb-jamboard](https://github.com/manishkatyan/bbb-jamboard)
+
+The default whiteboard of BigBlueButton has limited features including no eraser. Many teachers wish to have a more features-rich whiteboard that would help them better in conducting online classes.
+
+With BBB-Jamboard, you can easily integrate Google Jamboard into your BigBlueButton server.
+
+Jamboard is a digital interactive whiteboard developed by Google and can be used in stead of the default BugBlueButton whiteboard. Google Jamboard has the eraser feature that has often been requested by BigBlueButton users.
+
+### [bbb-twilio](https://github.com/manishkatyan/bbb-twilio)
+
+Integrate Twilio into BigBlueButton so that users can join a meeting with a dial-in number. You can get local numbers for almost all the countries.
+
+### [bbb-mp4](https://github.com/manishkatyan/bbb-mp4)
+
+With this app, you can convert a BigBlueButton recording into MP4 video and upload to S3. You can covert multiple MP4 videos in parallel or automate the conversion process.
+
+### [bbb-streaming](https://github.com/manishkatyan/bbb-streaming)
+
+Livestream your BigBlueButton classes on Youtube or Facebook to thousands of your users.
+
+### [100 Most Googled Questions on BigBlueButton](https://higheredlab.com/bigbluebutton-guide/)
+
+Everything you need to know about BigBlueButton including pricing, comparison with Zoom, Moodle integrations, scaling, and dozens of troubleshooting.
+
+
 
 <br/><br/>
 
