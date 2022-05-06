@@ -4,7 +4,7 @@ ENV_FILE=$1
 
 set -a
 
-source <(cat ./env | \
+source <(cat $ENV_FILE | \
     sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
 set +a 
 
