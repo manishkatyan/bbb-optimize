@@ -113,7 +113,7 @@ fi
 
 if [ ! -z $LEARNING_DASHBOARD_CLEANUP_DELAY ]; then
     echo "Keep Learning Dashboard data: $LEARNING_DASHBOARD_CLEANUP_DELAY"
-    sed -i "s/learningDashboardCleanupDelayInMinutes=.*/learningDashboardCleanupDelayInMinutes=$LEARNING_DASGBOARD_CLEANUP_DELAY/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+    sed -i "s/learningDashboardCleanupDelayInMinutes=.*/learningDashboardCleanupDelayInMinutes=$LEARNING_DASHBOARD_CLEANUP_DELAY/g" /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 fi
 
 if [ ! -z "$ENABLE_LISTEN_ONLY_MODE" ]; then
