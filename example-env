@@ -57,7 +57,7 @@ ENABLE_SHARED_NOTES=
 
 # Number of minutes that Learning Dashboard will be available after the end of the meeting
 # if 0, the Learning Dashboard will keep available permanently; default 2
-LEARNING_DASGBOARD_CLEANUP_DELAY=
+LEARNING_DASHBOARD_CLEANUP_DELAY=
 
 # Default duration of the meeting in minutes. If set to 0 the meeting does'nt end.
 #default 0
