@@ -519,7 +519,3 @@ Everything you need to know about BigBlueButton including pricing, comparison wi
 [MIT License](LICENSE.md)
 
 Copyright (c) [HigherEdLab.com](https://higheredlab.com/)
-
-```
-
-```
