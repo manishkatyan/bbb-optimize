@@ -486,6 +486,10 @@ Everything you need for online classes at scale on BigBlueButton, starting at $1
 
 Check-out the following apps to further extend features of BBB.
 
+### [bigbluebutton-chatgpt](https://github.com/AsyncWeb/bigbluebutton-chatgpt)
+
+Use ChatGPT to improve your BigBlueButton online classes. With this app you can ask questions to chatgpt and get response in public chat.
+
 ### [bbb-jamboard](https://github.com/manishkatyan/bbb-jamboard)
 
 The default whiteboard of BigBlueButton has limited features including no eraser. Many teachers wish to have a more features-rich whiteboard that would help them better in conducting online classes.
